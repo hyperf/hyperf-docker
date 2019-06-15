@@ -32,7 +32,7 @@ RUN set -ex \
     && tar -xf swoole.tar.gz -C swoole --strip-components=1 \
     && ( \
         cd swoole \
-        && phpize \
+        && phpize7 \
         && ./configure --enable-mysqlnd --enable-openssl \
         && make -s -j$(nproc) && make install \
     ) \
