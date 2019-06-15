@@ -1,3 +1,10 @@
+# hyperf-cloud/hyperf:7.2-base-alpine
+#
+# @link     https://www.hyperf.io
+# @document https://doc.hyperf.io
+# @contact  group@hyperf.io
+# @license  https://github.com/hyperf-cloud/hyperf/blob/master/LICENSE
+
 FROM alpine:3.9
 
 LABEL maintainer="Hyperf Developers <group@hyperf.io>" version="1.0" license="MIT"
@@ -5,7 +12,6 @@ LABEL maintainer="Hyperf Developers <group@hyperf.io>" version="1.0" license="MI
 ##
 # ---------- building ----------
 ##
-
 RUN set -ex \
     # change apk source repo
     && sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/' /etc/apk/repositories \

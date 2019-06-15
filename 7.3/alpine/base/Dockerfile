@@ -1,3 +1,10 @@
+# hyperf-cloud/hyperf:7.3-base-alpine
+#
+# @link     https://www.hyperf.io
+# @document https://doc.hyperf.io
+# @contact  group@hyperf.io
+# @license  https://github.com/hyperf-cloud/hyperf/blob/master/LICENSE
+
 FROM alpine:3.9
 
 LABEL maintainer="Hyperf Developers <group@hyperf.io>" version="1.0" license="MIT"
@@ -8,7 +15,6 @@ ADD https://dl.bintray.com/php-alpine/key/php-alpine.rsa.pub /etc/apk/keys/php-a
 ##
 # ---------- building ----------
 ##
-
 RUN set -ex \
     # change apk source repo
     && echo "https://dl.bintray.com/php-alpine/v3.9/php-7.3" >> /etc/apk/repositories \
