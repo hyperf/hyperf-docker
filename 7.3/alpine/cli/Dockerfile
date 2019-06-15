@@ -30,9 +30,11 @@ RUN set -ex \
     && cd /tmp \
     && mkdir -p swoole \
     && tar -xf swoole.tar.gz -C swoole --strip-components=1 \
+    && ln -s /usr/bin/phpize7 /usr/local/bin/phpize \
+    && ln -s /usr/bin/php-config7 /usr/local/bin/php-config \
     && ( \
         cd swoole \
-        && phpize7 \
+        && phpize \
         && ./configure --enable-mysqlnd --enable-openssl \
         && make -s -j$(nproc) && make install \
     ) \
@@ -43,5 +45,5 @@ RUN set -ex \
     && php -m \
     # ---------- clear works ----------
     && apk del .build-deps \
-    && rm -rf /var/cache/apk/* /tmp/* /usr/share/man \
+    && rm -rf /var/cache/apk/* /tmp/* /usr/share/man /usr/local/bin/php* \
     && echo -e "\033[42;37m Build Completed :).\033[0m\n"
