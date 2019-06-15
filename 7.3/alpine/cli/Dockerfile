@@ -1,11 +1,11 @@
-# hyperf-cloud/hyperf:7.3-cli-alpine
+# hyperf-cloud/hyperf:7.3-alpine-cli
 #
 # @link     https://www.hyperf.io
 # @document https://doc.hyperf.io
 # @contact  group@hyperf.io
 # @license  https://github.com/hyperf-cloud/hyperf/blob/master/LICENSE
 
-FROM hyperf/hyperf:7.3-base-alpine
+FROM hyperf/hyperf:7.3-alpine-base
 
 LABEL maintainer="Hyperf Developers <group@hyperf.io>" version="1.0" license="MIT"
 

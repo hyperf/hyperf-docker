@@ -1,4 +1,4 @@
-# hyperf-cloud/hyperf:7.3-base-alpine
+# hyperf-cloud/hyperf:7.3-alpine-base
 #
 # @link     https://www.hyperf.io
 # @document https://doc.hyperf.io
