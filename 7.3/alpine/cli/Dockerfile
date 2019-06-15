@@ -1,4 +1,4 @@
-FROM hyperf:7.3-base-alpine
+FROM hyperf-cloud/hyperf:7.3-base-alpine
 
 LABEL maintainer="Hyperf Developers <group@hyperf.io>" version="1.0" license="MIT"
 
