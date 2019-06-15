@@ -1,4 +1,4 @@
-# hyperf-cloud/hyperf:7.2-base-centos
+# hyperf-cloud/hyperf:7.2-centos-base
 #
 # @link     https://www.hyperf.io
 # @document https://doc.hyperf.io
