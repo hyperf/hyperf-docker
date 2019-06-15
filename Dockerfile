@@ -15,7 +15,7 @@ LABEL maintainer="Hyperf Developers <group@hyperf.io>" version="1.0" license="MI
 ARG timezone
 
 ENV TIMEZONE=${timezone:-"Asia/Shanghai"} \
-    COMPOSER_VERSION=1.8.5 \
+    COMPOSER_VERSION=1.8.6 \
     APP_ENV=prod
 
 # update
@@ -26,7 +26,6 @@ RUN set -ex \
     && wget https://github.com/composer/composer/releases/download/${COMPOSER_VERSION}/composer.phar \
     && chmod u+x composer.phar \
     && mv composer.phar /usr/local/bin/composer \
-    && composer self-update --clean-backups \
     # show php version and extensions
     && php -v \
     && php -m \
