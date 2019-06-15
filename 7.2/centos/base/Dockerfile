@@ -39,5 +39,9 @@ RUN set -ex \
     xz \
     tzdata \
     pcre \
+    && ln -s /usr/bin/php72 /usr/local/bin/php \
+    && ln -s /opt/remi/php72/root/bin/phpize /usr/local/bin/phpize \
+    && ln -s /opt/remi/php72/root/bin/php-config /usr/local/bin/php-config \
+    && ln -s /opt/remi/php72/root/sbin/php-fpm /usr/local/sbin/php-fpm \
     && rm -rf /tmp/* /usr/share/man /usr/share/php7 \
     && echo -e "\033[42;37m Build Completed :).\033[0m\n"
