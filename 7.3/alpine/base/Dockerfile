@@ -34,7 +34,6 @@ RUN set -ex \
     php7-curl \
     php7-ctype \
     php7-dom \
-    php7-fileinfo \
     php7-gd \
     php7-iconv \
     php7-json \
@@ -47,19 +46,19 @@ RUN set -ex \
     php7-phar \
     php7-posix \
     php7-redis \
-    php7-simplexml \
     php7-sockets \
     php7-sodium \
     php7-sysvshm \
     php7-sysvmsg \
     php7-sysvsem \
-    php7-tokenizer \
     php7-zip \
     php7-zlib \
     php7-xml \
     php7-xmlreader \
-    php7-xmlwriter \
     php7-pcntl \
+    && ln -s /usr/bin/php7 /usr/bin/php \
     && apk del --purge *-dev \
     && rm -rf /var/cache/apk/* /tmp/* /usr/share/man /usr/share/php7 \
+    && php -v \
+    && php -m \
     && echo -e "\033[42;37m Build Completed :).\033[0m\n"
