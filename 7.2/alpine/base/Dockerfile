@@ -58,4 +58,6 @@ RUN set -ex \
     php7-pcntl \
     && apk del --purge *-dev \
     && rm -rf /var/cache/apk/* /tmp/* /usr/share/man /usr/share/php7 \
+    && php -v \
+    && php -m \
     && echo -e "\033[42;37m Build Completed :).\033[0m\n"
