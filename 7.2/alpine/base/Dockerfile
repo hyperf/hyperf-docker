@@ -38,7 +38,6 @@ RUN set -ex \
     php7-iconv \
     php7-json \
     php7-mbstring \
-    php7-mongodb \
     php7-mysqlnd \
     php7-openssl \
     php7-pdo \
@@ -57,6 +56,9 @@ RUN set -ex \
     php7-zip \
     php7-zlib \
     php7-xml \
+    php7-xmlreader \
+    php7-xmlwriter \
+    php7-pcntl \
     && apk del --purge *-dev \
     && rm -rf /var/cache/apk/* /tmp/* /usr/share/man /usr/share/php7 \
     #  ---------- some config,clear work ----------
