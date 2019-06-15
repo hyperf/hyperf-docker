@@ -5,9 +5,7 @@ LABEL maintainer="Hyperf Developers <group@hyperf.io>" version="1.0" license="MI
 ##
 # ---------- env settings ----------
 ##
-ARG swoole
-
-ENV SWOOLE_VERSION=${swoole:-"4.3.5"} \
+ENV SWOOLE_VERSION=4.3.5 \
     #  install and remove building packages
     PHPIZE_DEPS="autoconf dpkg-dev dpkg file g++ gcc libc-dev make php7-dev php7-pear pkgconf re2c pcre-dev zlib-dev libtool automake"
 
