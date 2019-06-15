@@ -20,7 +20,6 @@ RUN set -ex \
     && rpm -ivh http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm \
     && rpm -ivh https://mirrors.tuna.tsinghua.edu.cn/remi/enterprise/remi-release-7.rpm \
     && yum install -y vim \
-    git \
     ${PHP_VERSION} \
     ${PHP_VERSION}-php-devel \
     ${PHP_VERSION}-php-fpm \
