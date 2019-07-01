@@ -24,6 +24,7 @@ RUN set -ex \
     # Install base packages ('ca-certificates' will install 'nghttp2-libs')
     ca-certificates \
     curl \
+    wget \
     tar \
     xz \
     libressl \
