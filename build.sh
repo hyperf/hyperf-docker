@@ -34,20 +34,21 @@ if  [ "$SWOOLE_V" != "" ] ; then
     docker tag hyperf/hyperf:7.3-alpine-cli-$SWOOLE_V hyperf/hyperf:7.3-alpine-cli-$SWOOLE_PPV
     docker tag hyperf/hyperf:7.3-alpine-cli-$SWOOLE_V hyperf/hyperf:7.3-alpine-cli
 
-    # Push swoole version a.b.*
-    docker push hyperf/hyperf:7.2-alpine-cli
+    # Push images.
     docker push hyperf/hyperf:7.2-alpine-cli-$SWOOLE_V
-
-    docker push hyperf/hyperf:7.3-alpine-cli
     docker push hyperf/hyperf:7.3-alpine-cli-$SWOOLE_V
 
-    # Push swoole version a.*
+    # Push images which swoole version is the latest one in a.b.*
     docker push hyperf/hyperf:7.2-alpine-cli-$SWOOLE_PV
     docker push hyperf/hyperf:7.3-alpine-cli-$SWOOLE_PV
 
 
-    # Push swoole version *.
-    docker push hyperf/hyperf:latest
+    # Push images which swoole version is the latest one in a.*
     docker push hyperf/hyperf:7.2-alpine-cli-$SWOOLE_PPV
     docker push hyperf/hyperf:7.3-alpine-cli-$SWOOLE_PPV
+
+    # Push images which swoole version is the latest one.
+    docker push hyperf/hyperf:7.2-alpine-cli
+    docker push hyperf/hyperf:7.3-alpine-cli
+    docker push hyperf/hyperf:latest
 fi
