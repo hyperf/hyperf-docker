@@ -9,10 +9,12 @@ FROM hyperf/hyperf:7.3-alpine-base
 
 LABEL maintainer="Hyperf Developers <group@hyperf.io>" version="1.0" license="MIT"
 
+ARG swoole
+
 ##
 # ---------- env settings ----------
 ##
-ENV SWOOLE_VERSION=4.4.1 \
+ENV SWOOLE_VERSION=${swoole} \
     #  install and remove building packages
     PHPIZE_DEPS="autoconf dpkg-dev dpkg file g++ gcc libc-dev make php7-dev php7-pear pkgconf re2c pcre-dev pcre2-dev zlib-dev libtool automake"
 
