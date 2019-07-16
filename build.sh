@@ -14,6 +14,8 @@ docker build ./7.2/alpine/base/ -t hyperf/hyperf:7.2-alpine-base
 docker build ./7.3/alpine/base/ -t hyperf/hyperf:7.3-alpine-base
 
 # Push ...
+docker push hyperf/hyperf:7.2-alpine-base
+docker push hyperf/hyperf:7.3-alpine-base
 
 if  [ "$SWOOLE_V" != "" ] ; then
     # Build cli.Dockerfile with Swoole Version.
@@ -33,5 +35,12 @@ if  [ "$SWOOLE_V" != "" ] ; then
     docker tag hyperf/hyperf:7.3-alpine-cli-$SWOOLE_V hyperf/hyperf:7.3-alpine-cli
 
     # Push ...
+    docker push hyperf/hyperf:7.2-alpine-cli-$SWOOLE_V
+    docker push hyperf/hyperf:7.2-alpine-cli-$SWOOLE_PV
+    docker push hyperf/hyperf:7.2-alpine-cli-$SWOOLE_PPV
+    docker push hyperf/hyperf:latest
 
+    docker push hyperf/hyperf:7.3-alpine-cli-$SWOOLE_V
+    docker push hyperf/hyperf:7.3-alpine-cli-$SWOOLE_PV
+    docker push hyperf/hyperf:7.3-alpine-cli-$SWOOLE_PPV
 fi
