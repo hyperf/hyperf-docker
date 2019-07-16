@@ -13,7 +13,7 @@ docker build ./7.2/alpine/base/ -t hyperf/hyperf:7.2-alpine-base
 # Build php7.3
 docker build ./7.3/alpine/base/ -t hyperf/hyperf:7.3-alpine-base
 
-# Push ...
+# Push base images.
 docker push hyperf/hyperf:7.2-alpine-base
 docker push hyperf/hyperf:7.3-alpine-base
 
@@ -34,13 +34,20 @@ if  [ "$SWOOLE_V" != "" ] ; then
     docker tag hyperf/hyperf:7.3-alpine-cli-$SWOOLE_V hyperf/hyperf:7.3-alpine-cli-$SWOOLE_PPV
     docker tag hyperf/hyperf:7.3-alpine-cli-$SWOOLE_V hyperf/hyperf:7.3-alpine-cli
 
-    # Push ...
+    # Push swoole version a.b.*
+    docker push hyperf/hyperf:7.2-alpine-cli
     docker push hyperf/hyperf:7.2-alpine-cli-$SWOOLE_V
-    docker push hyperf/hyperf:7.2-alpine-cli-$SWOOLE_PV
-    docker push hyperf/hyperf:7.2-alpine-cli-$SWOOLE_PPV
-    docker push hyperf/hyperf:latest
 
+    docker push hyperf/hyperf:7.3-alpine-cli
     docker push hyperf/hyperf:7.3-alpine-cli-$SWOOLE_V
+
+    # Push swoole version a.*
+    docker push hyperf/hyperf:7.2-alpine-cli-$SWOOLE_PV
     docker push hyperf/hyperf:7.3-alpine-cli-$SWOOLE_PV
+
+
+    # Push swoole version *.
+    docker push hyperf/hyperf:latest
+    docker push hyperf/hyperf:7.2-alpine-cli-$SWOOLE_PPV
     docker push hyperf/hyperf:7.3-alpine-cli-$SWOOLE_PPV
 fi
