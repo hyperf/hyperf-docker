@@ -9,9 +9,9 @@ tag format:
 
 support:
 
-- [`7.2-alpine-cli-4.4`, `7.2-alpine-cli-4.4.1`, `7.2-alpine-cli`, `latest`](https://github.com/hyperf-cloud/hyperf-docker/blob/master/7.2/alpine/cli/Dockerfile)
+- [`7.2-alpine-cli-*`, `7.2-alpine-cli`, `latest`](https://github.com/hyperf-cloud/hyperf-docker/blob/master/7.2/alpine/cli/Dockerfile)
 - [`7.2-alpine-base`](https://github.com/hyperf-cloud/hyperf-docker/blob/master/7.2/alpine/base/Dockerfile)
-- [`7.3-alpine-cli-4.4`, `7.3-alpine-cli-4.4.1`, `7.3-alpine-cli`](https://github.com/hyperf-cloud/hyperf-docker/blob/master/7.3/alpine/cli/Dockerfile)
+- [`7.3-alpine-cli-*`, `7.3-alpine-cli`](https://github.com/hyperf-cloud/hyperf-docker/blob/master/7.3/alpine/cli/Dockerfile)
 - [`7.3-alpine-base`](https://github.com/hyperf-cloud/hyperf-docker/blob/master/7.3/alpine/base/Dockerfile)
 
 # Quick reference
