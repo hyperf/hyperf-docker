@@ -1,0 +1,18 @@
+# syntax version.
+version: "3.7"
+
+volumes:
+  php-alpine-cache-v3.9:
+
+# services list.
+services:
+  # sandbox base image
+  alpine-v3.9-base:
+    # target image.
+    image: "hyperf/hyperf:${PHP_VERSION}-alpine-base"
+    build:
+      context: "${PHP_VERSION}/alpine/base"
+      args:
+        ALPINE_VERSION: 3.9
+    volumes:
+      - "php-alpine-cache-v3.9:/var/cache/apk"
