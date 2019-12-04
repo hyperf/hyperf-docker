@@ -5,7 +5,9 @@
 # @contact  group@hyperf.io
 # @license  https://github.com/hyperf-cloud/hyperf/blob/master/LICENSE
 
-FROM hyperf/hyperf:7.3-alpine-v3.9-base
+ARG ALPINE_VERSION
+
+FROM hyperf/hyperf:7.4-alpine-v${ALPINE_VERSION}-base
 
 LABEL maintainer="Hyperf Developers <group@hyperf.io>" version="1.0" license="MIT"
 

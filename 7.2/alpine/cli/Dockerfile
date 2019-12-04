@@ -5,16 +5,16 @@
 # @contact  group@hyperf.io
 # @license  https://github.com/hyperf-cloud/hyperf/blob/master/LICENSE
 
-FROM hyperf/hyperf:7.2-alpine-base
+FROM hyperf/hyperf:7.2-alpine-v3.9-base
 
 LABEL maintainer="Hyperf Developers <group@hyperf.io>" version="1.0" license="MIT"
 
-ARG swoole
+ARG SWOOLE_VERSION
 
 ##
 # ---------- env settings ----------
 ##
-ENV SWOOLE_VERSION=${swoole:-"4.4.1"} \
+ENV SWOOLE_VERSION=${SWOOLE_VERSION:-"4.4.12"} \
     #  install and remove building packages
     PHPIZE_DEPS="autoconf dpkg-dev dpkg file g++ gcc libc-dev make php7-dev php7-pear pkgconf re2c pcre-dev zlib-dev libtool automake"
 

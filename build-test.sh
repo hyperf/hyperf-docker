@@ -12,12 +12,22 @@ function push() {
     docker push hyperf/hyperf:${TAG}
 }
 
-# build sandbox
+# build base image
 if [[ ${TASK} == "base" ]]; then
     export PHP_VERSION=7.2 && export ALPINE_VERSION=3.9 && docker-compose build alpine-base
     export PHP_VERSION=7.3 && export ALPINE_VERSION=3.9 && docker-compose build alpine-base
     export PHP_VERSION=7.4 && export ALPINE_VERSION=3.9 && docker-compose build alpine-base
     export PHP_VERSION=7.4 && export ALPINE_VERSION=3.10 && docker-compose build alpine-base
+fi
+
+# build swoole image
+if [[ ${TASK} == "cli" ]]; then
+    SWOOLE_VERSION=${2}
+    export SWOOLE_VERSION=${SWOOLE_VERSION}
+    export PHP_VERSION=7.2 && export ALPINE_VERSION=3.9 && docker-compose build alpine-cli
+    export PHP_VERSION=7.3 && export ALPINE_VERSION=3.9 && docker-compose build alpine-cli
+    export PHP_VERSION=7.4 && export ALPINE_VERSION=3.9 && docker-compose build alpine-cli
+    export PHP_VERSION=7.4 && export ALPINE_VERSION=3.10 && docker-compose build alpine-cli
 fi
 
 if [[ ${TASK} == "publish" ]]; then
