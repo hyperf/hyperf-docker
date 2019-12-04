@@ -1,54 +1,87 @@
 #!/usr/bin/env bash
 
 set -e
-set -x
 
-SWOOLE_V=$1
-SWOOLE_PV=${SWOOLE_V%\.*}
-SWOOLE_PPV=${SWOOLE_V%%\.*}
+# source environment variables for the time being.
+source ./.env
 
-# Build base.Dockerfile
-# Build php7.2
-docker build ./7.2/alpine/base/ -t hyperf/hyperf:7.2-alpine-base
-# Build php7.3
-docker build ./7.3/alpine/base/ -t hyperf/hyperf:7.3-alpine-base
+# determine swoole version to build.
+TASK=${1}
+CHECK=${!#}
 
-# Push base images.
-docker push hyperf/hyperf:7.2-alpine-base
-docker push hyperf/hyperf:7.3-alpine-base
+function check_or_push() {
+    TAG=${1}
+    if [[ ${CHECK} == "--check" ]]; then
+        echo "Checking $TAG ..."
+        version=`docker run hyperf/hyperf:$TAG php -v`
+        echo $version | grep -Eo "PHP \d+\.\d+\.\d+"
+        swoole=`docker run hyperf/hyperf:$TAG php --ri swoole` && echo $swoole | grep -Eo "Version => \d+\.\d+\.\d+" || echo "No Swoole."
+    fi
 
-if  [ "$SWOOLE_V" != "" ] ; then
-    # Build cli.Dockerfile with Swoole Version.
-    # Build php7.2
-    docker build ./7.2/alpine/cli/ --build-arg swoole=$SWOOLE_V -t hyperf/hyperf:7.2-alpine-cli-$SWOOLE_V
-    docker tag hyperf/hyperf:7.2-alpine-cli-$SWOOLE_V hyperf/hyperf:7.2-alpine-cli-$SWOOLE_PV
-    docker tag hyperf/hyperf:7.2-alpine-cli-$SWOOLE_V hyperf/hyperf:7.2-alpine-cli-$SWOOLE_PPV
-    docker tag hyperf/hyperf:7.2-alpine-cli-$SWOOLE_V hyperf/hyperf:7.2-alpine-cli
+    if [[ ${CHECK} != "--check" ]]; then
+        echo "Publishing "$TAG" ..."
+        # Push origin image
+        docker push hyperf/hyperf:${TAG}
+    fi
 
-    # Build latest
-    docker tag hyperf/hyperf:7.2-alpine-cli-$SWOOLE_V hyperf/hyperf:latest
+    echo -e "\n"
+}
 
-    # Build php7.3
-    docker build ./7.3/alpine/cli/ --build-arg swoole=$SWOOLE_V -t hyperf/hyperf:7.3-alpine-cli-$SWOOLE_V
-    docker tag hyperf/hyperf:7.3-alpine-cli-$SWOOLE_V hyperf/hyperf:7.3-alpine-cli-$SWOOLE_PV
-    docker tag hyperf/hyperf:7.3-alpine-cli-$SWOOLE_V hyperf/hyperf:7.3-alpine-cli-$SWOOLE_PPV
-    docker tag hyperf/hyperf:7.3-alpine-cli-$SWOOLE_V hyperf/hyperf:7.3-alpine-cli
+function tag_and_push() {
+    TAG=${1}
+    ORIGIN_TAG=$TAG
+    TAG=$TAG"-"$SWOOLE_VERSION
 
-    # Push images.
-    docker push hyperf/hyperf:7.2-alpine-cli-$SWOOLE_V
-    docker push hyperf/hyperf:7.3-alpine-cli-$SWOOLE_V
+    SWOOLE_VERSION=${2}
 
-    # Push images which swoole version is the latest one in a.b.*
-    docker push hyperf/hyperf:7.2-alpine-cli-$SWOOLE_PV
-    docker push hyperf/hyperf:7.3-alpine-cli-$SWOOLE_PV
+    SWOOLE_PV=${SWOOLE_VERSION%\.*}
+    SWOOLE_PPV=${SWOOLE_VERSION%%\.*}
 
+    docker tag hyperf/hyperf:"$TAG" hyperf/hyperf:"$ORIGIN_TAG-$SWOOLE_PV"
+    docker tag hyperf/hyperf:"$TAG" hyperf/hyperf:"$ORIGIN_TAG-$SWOOLE_PPV"
+    docker tag hyperf/hyperf:"$TAG" hyperf/hyperf:"$ORIGIN_TAG"
 
-    # Push images which swoole version is the latest one in a.*
-    docker push hyperf/hyperf:7.2-alpine-cli-$SWOOLE_PPV
-    docker push hyperf/hyperf:7.3-alpine-cli-$SWOOLE_PPV
+    check_or_push "$ORIGIN_TAG-$SWOOLE_PV"
+    check_or_push "$ORIGIN_TAG-$SWOOLE_PPV"
+    check_or_push "$ORIGIN_TAG"
+}
 
-    # Push images which swoole version is the latest one.
-    docker push hyperf/hyperf:7.2-alpine-cli
-    docker push hyperf/hyperf:7.3-alpine-cli
-    docker push hyperf/hyperf:latest
+# build base image
+if [[ ${TASK} == "base" ]]; then
+    export PHP_VERSION=7.2 && export ALPINE_VERSION=3.9 && docker-compose build alpine-base
+    export PHP_VERSION=7.3 && export ALPINE_VERSION=3.9 && docker-compose build alpine-base
+    export PHP_VERSION=7.4 && export ALPINE_VERSION=3.9 && docker-compose build alpine-base
+    export PHP_VERSION=7.4 && export ALPINE_VERSION=3.10 && docker-compose build alpine-base
+fi
+
+# build swoole image
+if [[ ${TASK} == "cli" ]]; then
+    SWOOLE_VERSION=${2}
+    export SWOOLE_VERSION=${SWOOLE_VERSION}
+    export PHP_VERSION=7.2 && export ALPINE_VERSION=3.9 && docker-compose build alpine-cli
+    export PHP_VERSION=7.3 && export ALPINE_VERSION=3.9 && docker-compose build alpine-cli
+    export PHP_VERSION=7.4 && export ALPINE_VERSION=3.9 && docker-compose build alpine-cli
+    export PHP_VERSION=7.4 && export ALPINE_VERSION=3.10 && docker-compose build alpine-cli
+fi
+
+if [[ ${TASK} == "publish" ]]; then
+    # Push base image
+    TAGS="7.2-alpine-v3.9-base 7.3-alpine-v3.9-base 7.4-alpine-v3.9-base 7.4-alpine-v3.10-base"
+    for TAG in ${TAGS}; do
+        check_or_push $TAG
+    done
+
+    SWOOLE_VERSION=${2}
+    if [[ ${SWOOLE_VERSION} != "" ]]; then
+        TAGS="7.2-alpine-v3.9-cli 7.3-alpine-v3.9-cli 7.4-alpine-v3.9-cli 7.4-alpine-v3.10-cli"
+        for TAG in ${TAGS}; do
+            BASETAG=${TAG}
+            check_or_push "${TAG}-${SWOOLE_VERSION}"
+            tag_and_push $BASETAG $SWOOLE_VERSION
+        done
+
+        # Tag latest image
+        docker tag hyperf/hyperf:7.2-alpine-v3.9-cli-"${SWOOLE_VERSION}" hyperf/hyperf:latest
+        check_or_push "latest"
+    fi
 fi
