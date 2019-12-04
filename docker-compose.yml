@@ -3,16 +3,17 @@ version: "3.7"
 
 volumes:
   php-alpine-cache-v3.9:
+  php-alpine-cache-v3.10:
 
 # services list.
 services:
   # sandbox base image
-  alpine-v3.9-base:
+  alpine-base:
     # target image.
-    image: "hyperf/hyperf:${PHP_VERSION}-alpine-base"
+    image: "hyperf/hyperf:${PHP_VERSION}-alpine-v${ALPINE_VERSION}-base"
     build:
       context: "${PHP_VERSION}/alpine/base"
       args:
-        ALPINE_VERSION: 3.9
+        ALPINE_VERSION: ${ALPINE_VERSION}
     volumes:
-      - "php-alpine-cache-v3.9:/var/cache/apk"
+      - "php-alpine-cache-v${ALPINE_VERSION}:/var/cache/apk"

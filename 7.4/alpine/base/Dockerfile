@@ -1,13 +1,17 @@
-# hyperf-cloud/hyperf:7.3-alpine-base
+# hyperf-cloud/hyperf:7.4-alpine-base
 #
 # @link     https://www.hyperf.io
 # @document https://doc.hyperf.io
 # @contact  group@hyperf.io
 # @license  https://github.com/hyperf-cloud/hyperf/blob/master/LICENSE
 
-FROM alpine:3.9
+ARG ALPINE_VERSION
+
+FROM alpine:$ALPINE_VERSION
 
 LABEL maintainer="Hyperf Developers <group@hyperf.io>" version="1.0" license="MIT"
+
+ARG ALPINE_VERSION
 
 # trust this project public key to trust the packages.
 ADD https://dl.bintray.com/php-alpine/key/php-alpine.rsa.pub /etc/apk/keys/php-alpine.rsa.pub
@@ -17,8 +21,8 @@ ADD https://dl.bintray.com/php-alpine/key/php-alpine.rsa.pub /etc/apk/keys/php-a
 ##
 RUN set -ex \
     # change apk source repo
-    && echo "https://dl.bintray.com/php-alpine/v3.9/php-7.3" >> /etc/apk/repositories \
-    && echo "@php https://dl.bintray.com/php-alpine/v3.9/php-7.3" >> /etc/apk/repositories \
+    && echo "https://dl.bintray.com/php-alpine/v$ALPINE_VERSION/php-7.4" >> /etc/apk/repositories \
+    && echo "@php https://dl.bintray.com/php-alpine/v$ALPINE_VERSION/php-7.4" >> /etc/apk/repositories \
     && apk update \
     && apk add --no-cache \
     # Install base packages ('ca-certificates' will install 'nghttp2-libs')
