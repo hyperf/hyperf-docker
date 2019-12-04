@@ -1,15 +1,49 @@
 #!/usr/bin/env bash
 
+set -e
+
+# source environment variables for the time being.
+source ./.env
+
 # determine swoole version to build.
 TASK=${1}
+CHECK=${!#}
 
-function push() {
+function check_or_push() {
     TAG=${1}
-    # Push origin image
-    docker push hyperf/hyperf:${TAG}
-    # Push abbreviated image, default alpine version is v3.9
-    TAG=`echo $TAG | sed "s/-v3.9//g"`
-    docker push hyperf/hyperf:${TAG}
+    if [[ ${CHECK} == "--check" ]]; then
+        echo "Checking $TAG ..."
+        version=`docker run hyperf/hyperf:$TAG php -v`
+        echo $version | grep -Eo "PHP \d+\.\d+\.\d+"
+        swoole=`docker run hyperf/hyperf:$TAG php --ri swoole` && echo $swoole | grep -Eo "Version => \d+\.\d+\.\d+" || echo "No Swoole."
+    fi
+
+    if [[ ${CHECK} != "--check" ]]; then
+        echo "Publishing "$TAG" ..."
+        # Push origin image
+        docker push hyperf/hyperf:${TAG}
+    fi
+
+    echo -e "\n"
+}
+
+function tag_and_push() {
+    TAG=${1}
+    ORIGIN_TAG=$TAG
+    TAG=$TAG"-"$SWOOLE_VERSION
+
+    SWOOLE_VERSION=${2}
+
+    SWOOLE_PV=${SWOOLE_VERSION%\.*}
+    SWOOLE_PPV=${SWOOLE_VERSION%%\.*}
+
+    docker tag hyperf/hyperf:"$TAG" hyperf/hyperf:"$ORIGIN_TAG-$SWOOLE_PV"
+    docker tag hyperf/hyperf:"$TAG" hyperf/hyperf:"$ORIGIN_TAG-$SWOOLE_PPV"
+    docker tag hyperf/hyperf:"$TAG" hyperf/hyperf:"$ORIGIN_TAG"
+
+    check_or_push "$ORIGIN_TAG-$SWOOLE_PV"
+    check_or_push "$ORIGIN_TAG-$SWOOLE_PPV"
+    check_or_push "$ORIGIN_TAG"
 }
 
 # build base image
@@ -34,6 +68,20 @@ if [[ ${TASK} == "publish" ]]; then
     # Push base image
     TAGS="7.2-alpine-v3.9-base 7.3-alpine-v3.9-base 7.4-alpine-v3.9-base 7.4-alpine-v3.10-base"
     for TAG in ${TAGS}; do
-        push $TAG
+        check_or_push $TAG
     done
+
+    SWOOLE_VERSION=${2}
+    if [[ ${SWOOLE_VERSION} != "" ]]; then
+        TAGS="7.2-alpine-v3.9-cli 7.3-alpine-v3.9-cli 7.4-alpine-v3.9-cli 7.4-alpine-v3.10-cli"
+        for TAG in ${TAGS}; do
+            BASETAG=${TAG}
+            check_or_push "${TAG}-${SWOOLE_VERSION}"
+            tag_and_push $BASETAG $SWOOLE_VERSION
+        done
+
+        # Tag latest image
+        docker tag hyperf/hyperf:7.2-alpine-v3.9-cli-"${SWOOLE_VERSION}" hyperf/hyperf:latest
+        check_or_push "latest"
+    fi
 fi
