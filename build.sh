@@ -74,6 +74,7 @@ if [[ ${TASK} == "publish" ]]; then
     SWOOLE_VERSION=${2}
     if [[ ${SWOOLE_VERSION} != "" ]]; then
         TAGS="7.2-alpine-v3.9-cli 7.3-alpine-v3.9-cli 7.4-alpine-v3.9-cli 7.4-alpine-v3.10-cli"
+        SWOOLE_VERSION="v${SWOOLE_VERSION}"
         for TAG in ${TAGS}; do
             BASETAG=${TAG}
             check_or_push "${TAG}-${SWOOLE_VERSION}"
