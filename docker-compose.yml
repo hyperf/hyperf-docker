@@ -19,7 +19,7 @@ services:
 
   # base image
   alpine-cli:
-    image: "hyperf/hyperf:${PHP_VERSION}-alpine-v${ALPINE_VERSION}-cli-${SWOOLE_VERSION}"
+    image: "hyperf/hyperf:${PHP_VERSION}-alpine-v${ALPINE_VERSION}-cli-v${SWOOLE_VERSION}"
     build:
       context: "${PHP_VERSION}/alpine/cli"
       args:
