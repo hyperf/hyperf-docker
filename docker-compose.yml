@@ -1,0 +1,29 @@
+# syntax version.
+version: "3.7"
+
+volumes:
+  php-alpine-cache-v3.9:
+  php-alpine-cache-v3.10:
+
+# services list.
+services:
+  # base image
+  alpine-base:
+    image: "hyperf/hyperf:${PHP_VERSION}-alpine-v${ALPINE_VERSION}-base"
+    build:
+      context: "${PHP_VERSION}/alpine/base"
+      args:
+        ALPINE_VERSION: ${ALPINE_VERSION}
+    volumes:
+      - "php-alpine-cache-v${ALPINE_VERSION}:/var/cache/apk"
+
+  # base image
+  alpine-cli:
+    image: "hyperf/hyperf:${PHP_VERSION}-alpine-v${ALPINE_VERSION}-cli-v${SWOOLE_VERSION}"
+    build:
+      context: "${PHP_VERSION}/alpine/cli"
+      args:
+        ALPINE_VERSION: ${ALPINE_VERSION}
+        SWOOLE_VERSION: ${SWOOLE_VERSION}
+    volumes:
+      - "php-alpine-cache-v${ALPINE_VERSION}:/var/cache/apk"
