@@ -1,9 +1,9 @@
-# hyperf-cloud/hyperf:7.2-alpine-base
+# hyperf/hyperf:7.2
 #
 # @link     https://www.hyperf.io
 # @document https://doc.hyperf.io
 # @contact  group@hyperf.io
-# @license  https://github.com/hyperf-cloud/hyperf/blob/master/LICENSE
+# @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
 
 FROM alpine:3.9
 
