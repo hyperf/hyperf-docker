@@ -33,13 +33,13 @@ Added [Dockerfile](https://github.com/hyperf-cloud/hyperf-docker/blob/master/Doc
 ./build base
 
 # Build swoole image
-./build cli 4.4.12
+./build cli 4.5.2
 
 # Check images
-./build publish 4.4.12 --check
+./build publish 4.5.2 --check
 
 # Push images to docker.io
-./build publish 4.4.12
+./build publish 4.5.2
 ```
 
 # more demo
