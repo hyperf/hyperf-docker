@@ -26,5 +26,5 @@ RUN set -ex \
     && php -v \
     && php -m \
     # ---------- clear works ----------
-    && rm -rf /var/cache/apk/* /tmp/* /usr/share/man /usr/local/bin/php* \
+    && rm -rf /var/cache/apk/* /tmp/* /usr/share/man \
     && echo -e "\033[42;37m Build Completed :).\033[0m\n"
