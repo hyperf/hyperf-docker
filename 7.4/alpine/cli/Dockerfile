@@ -16,7 +16,7 @@ ARG SWOOLE_VERSION
 ##
 # ---------- env settings ----------
 ##
-ENV SWOOLE_VERSION=${SWOOLE_VERSION:-"4.4.12"} \
+ENV SWOOLE_VERSION=${SWOOLE_VERSION:-"4.5.2"} \
     #  install and remove building packages
     PHPIZE_DEPS="autoconf dpkg-dev dpkg file g++ gcc libc-dev make php7-dev php7-pear pkgconf re2c pcre-dev pcre2-dev zlib-dev libtool automake"
 

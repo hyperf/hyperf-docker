@@ -23,33 +23,12 @@ ENV SWOOLE_VERSION=${SWOOLE_VERSION:-"4.5.2"} \
 # update
 RUN set -ex \
     && apk update \
-    # for swoole extension libaio linux-headers
     && apk add --no-cache libstdc++ openssl git bash \
-    && apk add --no-cache --virtual .build-deps $PHPIZE_DEPS libaio-dev openssl-dev \
-    # download
-    && cd /tmp \
-    && curl -SL "https://github.com/swoole/swoole-src/archive/v${SWOOLE_VERSION}.tar.gz" -o swoole.tar.gz \
-    && ls -alh \
-    # php extension:swoole
-    && cd /tmp \
-    && mkdir -p swoole \
-    && tar -xf swoole.tar.gz -C swoole --strip-components=1 \
+    && apk add --no-cache $PHPIZE_DEPS libaio-dev openssl-dev \
     && ln -s /usr/bin/phpize7 /usr/local/bin/phpize \
     && ln -s /usr/bin/php-config7 /usr/local/bin/php-config \
-    && ( \
-        cd swoole \
-        && phpize \
-        && ./configure --enable-mysqlnd --enable-openssl --enable-http2 \
-        && make -s -j$(nproc) && make install \
-    ) \
-    && echo "memory_limit=1G" > /etc/php7/conf.d/00_default.ini \
-    && echo "extension=swoole.so" > /etc/php7/conf.d/50_swoole.ini \
-    && echo "swoole.use_shortname = 'Off'" >> /etc/php7/conf.d/50_swoole.ini \
-    # clear
     && php -v \
     && php -m \
-    && php --ri swoole \
     # ---------- clear works ----------
-    && apk del .build-deps \
     && rm -rf /var/cache/apk/* /tmp/* /usr/share/man /usr/local/bin/php* \
     && echo -e "\033[42;37m Build Completed :).\033[0m\n"
