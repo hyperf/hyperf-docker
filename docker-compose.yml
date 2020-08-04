@@ -18,7 +18,7 @@ services:
     volumes:
       - "php-alpine-cache-v${ALPINE_VERSION}:/var/cache/apk"
 
-  # base image
+  # swoole image
   alpine-cli:
     image: "hyperf/hyperf:${PHP_VERSION}-alpine-v${ALPINE_VERSION}-cli-v${SWOOLE_VERSION}"
     build:
@@ -26,5 +26,15 @@ services:
       args:
         ALPINE_VERSION: ${ALPINE_VERSION}
         SWOOLE_VERSION: ${SWOOLE_VERSION}
+    volumes:
+      - "php-alpine-cache-v${ALPINE_VERSION}:/var/cache/apk"
+
+  # dev image
+  alpine-dev:
+    image: "hyperf/hyperf:${PHP_VERSION}-alpine-v${ALPINE_VERSION}-dev"
+    build:
+      context: "${PHP_VERSION}/alpine/dev"
+      args:
+        ALPINE_VERSION: ${ALPINE_VERSION}
     volumes:
       - "php-alpine-cache-v${ALPINE_VERSION}:/var/cache/apk"

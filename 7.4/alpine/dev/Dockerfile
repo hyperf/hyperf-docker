@@ -11,14 +11,10 @@ FROM hyperf/hyperf:7.4-alpine-v${ALPINE_VERSION}-base
 
 LABEL maintainer="Hyperf Developers <group@hyperf.io>" version="1.0" license="MIT"
 
-ARG SWOOLE_VERSION
-
 ##
 # ---------- env settings ----------
 ##
-ENV SWOOLE_VERSION=${SWOOLE_VERSION:-"4.5.2"} \
-    #  install and remove building packages
-    PHPIZE_DEPS="autoconf dpkg-dev dpkg file g++ gcc libc-dev make php7-dev php7-pear pkgconf re2c pcre-dev pcre2-dev zlib-dev libtool automake"
+ENV PHPIZE_DEPS="autoconf dpkg-dev dpkg file g++ gcc libc-dev make php7-dev php7-pear pkgconf re2c pcre-dev pcre2-dev zlib-dev libtool automake"
 
 # update
 RUN set -ex \

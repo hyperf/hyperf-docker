@@ -59,6 +59,19 @@ if [[ ${TASK} == "base" ]]; then
     export PHP_VERSION=7.4 && export ALPINE_VERSION=3.11 && docker-compose build alpine-base
 fi
 
+# build base image
+if [[ ${TASK} == "dev" ]]; then
+    export PHP_VERSION=7.2 && export ALPINE_VERSION=3.9 && docker-compose build alpine-dev
+
+    export PHP_VERSION=7.3 && export ALPINE_VERSION=3.9 && docker-compose build alpine-dev
+    export PHP_VERSION=7.3 && export ALPINE_VERSION=3.10 && docker-compose build alpine-dev
+    export PHP_VERSION=7.3 && export ALPINE_VERSION=3.11 && docker-compose build alpine-dev
+
+    export PHP_VERSION=7.4 && export ALPINE_VERSION=3.9 && docker-compose build alpine-dev
+    export PHP_VERSION=7.4 && export ALPINE_VERSION=3.10 && docker-compose build alpine-dev
+    export PHP_VERSION=7.4 && export ALPINE_VERSION=3.11 && docker-compose build alpine-dev
+fi
+
 # build swoole image
 if [[ ${TASK} == "cli" ]]; then
     SWOOLE_VERSION=${2}
