@@ -11,6 +11,11 @@ FROM ubuntu:$UBUNTU_VERSION
 
 LABEL maintainer="Hyperf Developers <group@hyperf.io>" version="1.0" license="MIT"
 
+ENV DEBIAN_FRONTEND=noninteractive
+
 RUN set -ex \
     && apt-get update \
-    && sh -c '/bin/echo -e "6\n70\n" | apt-get install -y php7.4'
+    && apt-get install -y tzdata \
+    && ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+    && dpkg-reconfigure -f noninteractive tzdata \
+    && apt-get install -y php7.4
