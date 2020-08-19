@@ -26,6 +26,6 @@ RUN set -ex \
     php7.4-mbstring \
     php7.4-mysql \
     php7.4-redis \
-    php7.4-zip \
+    php7.4-zip
 
 
