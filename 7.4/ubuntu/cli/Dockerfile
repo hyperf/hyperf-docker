@@ -33,22 +33,17 @@ RUN set -ex \
     && cd /tmp \
     && mkdir -p swoole \
     && tar -xf swoole.tar.gz -C swoole --strip-components=1 \
-    && ln -s /usr/bin/phpize7 /usr/local/bin/phpize \
-    && ln -s /usr/bin/php-config7 /usr/local/bin/php-config \
     && ( \
         cd swoole \
         && phpize \
         && ./configure --enable-mysqlnd --enable-openssl --enable-http2 \
         && make -s -j$(nproc) && make install \
     ) \
-    && echo "memory_limit=1G" > /etc/php7/conf.d/00_default.ini \
-    && echo "extension=swoole.so" > /etc/php7/conf.d/50_swoole.ini \
-    && echo "swoole.use_shortname = 'Off'" >> /etc/php7/conf.d/50_swoole.ini \
+    && echo "memory_limit=1G" > /etc/php/7.4/cli/conf.d/00-default.ini \
+    && echo "extension=swoole.so" > /etc/php/7.4/cli/conf.d/50-swoole.ini \
+    && echo "swoole.use_shortname = 'Off'" >> /etc/php/7.4/cli/conf.d/50-swoole.ini \
     # clear
     && php -v \
     && php -m \
     && php --ri swoole \
-    # ---------- clear works ----------
-    && apk del .build-deps \
-    && rm -rf /var/cache/apk/* /tmp/* /usr/share/man /usr/local/bin/php* \
     && echo -e "\033[42;37m Build Completed :).\033[0m\n"
