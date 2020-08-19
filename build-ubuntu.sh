@@ -10,3 +10,10 @@ CHECK=${!#}
 if [[ ${TASK} == "base" ]]; then
     export PHP_VERSION=7.4 && export UBUNTU_VERSION=20.10 && docker-compose build ubuntu-base
 fi
+
+# build swoole image
+if [[ ${TASK} == "cli" ]]; then
+    SWOOLE_VERSION=${2}
+    export SWOOLE_VERSION=${SWOOLE_VERSION}
+    export PHP_VERSION=7.4 && export UBUNTU_VERSION=20.10 && docker-compose build ubuntu-cli
+fi
