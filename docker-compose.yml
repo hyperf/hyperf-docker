@@ -1,6 +1,11 @@
 # syntax version.
 version: "3.7"
 
+volumes:
+  php-alpine-cache-v3.9:
+  php-alpine-cache-v3.10:
+  php-alpine-cache-v3.11:
+
 # services list.
 services:
   # base image
@@ -10,6 +15,8 @@ services:
       context: "${PHP_VERSION}/alpine/base"
       args:
         ALPINE_VERSION: ${ALPINE_VERSION}
+    volumes:
+      - "php-alpine-cache-v${ALPINE_VERSION}:/var/cache/apk"
 
   # swoole image
   alpine-cli:
@@ -19,6 +26,8 @@ services:
       args:
         ALPINE_VERSION: ${ALPINE_VERSION}
         SWOOLE_VERSION: ${SWOOLE_VERSION}
+    volumes:
+      - "php-alpine-cache-v${ALPINE_VERSION}:/var/cache/apk"
 
   # dev image
   alpine-dev:
@@ -27,6 +36,8 @@ services:
       context: "${PHP_VERSION}/alpine/dev"
       args:
         ALPINE_VERSION: ${ALPINE_VERSION}
+    volumes:
+      - "php-alpine-cache-v${ALPINE_VERSION}:/var/cache/apk"
 
   # ubuntu base image
   ubuntu-base:
