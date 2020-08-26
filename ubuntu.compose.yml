@@ -1,0 +1,21 @@
+# syntax version.
+version: "3.7"
+
+# services list.
+services:
+  # ubuntu base image
+  ubuntu-base:
+    image: "hyperf/hyperf:${PHP_VERSION}-ubuntu-v${UBUNTU_VERSION}-base"
+    build:
+      context: "${PHP_VERSION}/ubuntu/base"
+      args:
+        UBUNTU_VERSION: ${UBUNTU_VERSION}
+
+  # swoole image
+  ubuntu-cli:
+    image: "hyperf/hyperf:${PHP_VERSION}-ubuntu-v${UBUNTU_VERSION}-cli-v${SWOOLE_VERSION}"
+    build:
+      context: "${PHP_VERSION}/ubuntu/cli"
+      args:
+        UBUNTU_VERSION: ${UBUNTU_VERSION}
+        SWOOLE_VERSION: ${SWOOLE_VERSION}
