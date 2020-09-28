@@ -41,7 +41,12 @@ RUN set -ex \
     && echo "memory_limit=1G" > /etc/php7/conf.d/00_default.ini \
     && echo "extension=swoole.so" > /etc/php7/conf.d/50_swoole.ini \
     && echo "swoole.use_shortname = 'Off'" >> /etc/php7/conf.d/50_swoole.ini \
-    # clear
+    # install composer
+    && cd /tmp \
+    && wget https://github.com/composer/composer/releases/download/1.10.13/composer.phar \
+    && chmod u+x composer.phar \
+    && mv composer.phar /usr/local/bin/composer \
+    # php info
     && php -v \
     && php -m \
     && php --ri swoole \

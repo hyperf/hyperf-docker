@@ -19,6 +19,12 @@ RUN set -ex \
     && apk update \
     && apk add --no-cache libstdc++ openssl git bash \
     && apk add --no-cache $PHPIZE_DEPS libaio-dev openssl-dev \
+    # install composer
+    && cd /tmp \
+    && wget https://github.com/composer/composer/releases/download/1.10.13/composer.phar \
+    && chmod u+x composer.phar \
+    && mv composer.phar /usr/local/bin/composer \
+    # php info
     && php -v \
     && php -m \
     # ---------- clear works ----------

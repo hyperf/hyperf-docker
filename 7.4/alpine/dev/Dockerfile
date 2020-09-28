@@ -23,6 +23,12 @@ RUN set -ex \
     && apk add --no-cache $PHPIZE_DEPS libaio-dev openssl-dev \
     && ln -s /usr/bin/phpize7 /usr/local/bin/phpize \
     && ln -s /usr/bin/php-config7 /usr/local/bin/php-config \
+    # install composer
+    && cd /tmp \
+    && wget https://github.com/composer/composer/releases/download/1.10.13/composer.phar \
+    && chmod u+x composer.phar \
+    && mv composer.phar /usr/local/bin/composer \
+    # php info
     && php -v \
     && php -m \
     # ---------- clear works ----------
