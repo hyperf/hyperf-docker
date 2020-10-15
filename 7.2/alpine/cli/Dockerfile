@@ -43,7 +43,7 @@ RUN set -ex \
     && echo "swoole.use_shortname = 'Off'" >> /etc/php7/conf.d/50_swoole.ini \
     # install composer
     && cd /tmp \
-    && wget https://github.com/composer/composer/releases/download/1.10.13/composer.phar \
+    && wget https://github.com/composer/composer/releases/download/1.10.15/composer.phar \
     && chmod u+x composer.phar \
     && mv composer.phar /usr/local/bin/composer \
     # php info
