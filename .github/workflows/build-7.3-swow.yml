@@ -10,7 +10,7 @@ jobs:
   build-v309:
     runs-on: ubuntu-latest
     env:
-      ALPINE_VERSION: 3.9
+      ALPINE_VERSION: "3.9"
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
