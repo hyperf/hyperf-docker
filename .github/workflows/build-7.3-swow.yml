@@ -1,0 +1,18 @@
+name: Build Docker
+
+on: [push, pull_request]
+env:
+  ENGINE: swow
+  PHP_VERSION: 7.3
+  SW_VERSION: develop
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+jobs:
+  build-v309:
+    runs-on: ubuntu-latest
+    env:
+      ALPINE_VERSION: 3.9
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Build
+        run: ./github/workflows/build.sh
