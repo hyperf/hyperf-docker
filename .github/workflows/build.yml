@@ -3,7 +3,7 @@ name: Build Docker
 on: [push, pull_request]
 
 jobs:
-  build-7.3-alpine-v3.9-swow:
+  build_7.3_alpine_v3.9_swow:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
