@@ -87,6 +87,19 @@ if [[ ${TASK} == "cli" ]]; then
     export PHP_VERSION=7.4 && export ALPINE_VERSION=3.11 && docker-compose build alpine-cli
 fi
 
+# build swow image
+if [[ ${TASK} == "swow" ]]; then
+    SW_VERSION=${2}
+    export SW_VERSION=${SWOOLE_VERSION}
+    export PHP_VERSION=7.3 && export ALPINE_VERSION=3.9 && docker-compose build alpine-swow
+    export PHP_VERSION=7.3 && export ALPINE_VERSION=3.10 && docker-compose build alpine-swow
+    export PHP_VERSION=7.3 && export ALPINE_VERSION=3.11 && docker-compose build alpine-swow
+
+    export PHP_VERSION=7.4 && export ALPINE_VERSION=3.9 && docker-compose build alpine-swow
+    export PHP_VERSION=7.4 && export ALPINE_VERSION=3.10 && docker-compose build alpine-swow
+    export PHP_VERSION=7.4 && export ALPINE_VERSION=3.11 && docker-compose build alpine-swow
+fi
+
 if [[ ${TASK} == "publish-dev" ]]; then
     # Push dev image
     TAGS="7.2-alpine-v3.9-dev 7.3-alpine-v3.9-dev 7.3-alpine-v3.10-dev 7.3-alpine-v3.11-dev 7.4-alpine-v3.9-dev 7.4-alpine-v3.10-dev 7.4-alpine-v3.11-dev"
@@ -105,6 +118,14 @@ if [[ ${TASK} == "publish-cli" ]]; then
             check_or_push "${TAG}-${SWOOLE_VERSION}"
         done
     fi
+fi
+
+if [[ ${TASK} == "publish-base" ]]; then
+    # Push base image
+    TAGS="7.2-alpine-v3.9-base 7.3-alpine-v3.9-base 7.3-alpine-v3.10-base 7.3-alpine-v3.11-base 7.4-alpine-v3.9-base 7.4-alpine-v3.10-base 7.4-alpine-v3.11-base"
+    for TAG in ${TAGS}; do
+        check_or_push $TAG
+    done
 fi
 
 if [[ ${TASK} == "publish" ]]; then
