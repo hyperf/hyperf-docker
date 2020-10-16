@@ -15,4 +15,4 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Build
-        run: ./github/workflows/build.sh
+        run: ./.github/workflows/build.sh
