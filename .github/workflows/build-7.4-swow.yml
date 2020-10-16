@@ -1,6 +1,6 @@
-name: Build Docker
+name: Build PHP74 Swow
 
-on: [push, pull_request]
+on: [push]
 env:
   ENGINE: swow
   PHP_VERSION: 7.4
