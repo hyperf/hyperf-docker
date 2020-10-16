@@ -120,6 +120,18 @@ if [[ ${TASK} == "publish-cli" ]]; then
     fi
 fi
 
+if [[ ${TASK} == "publish-swow" ]]; then
+    SW_VERSION=${2}
+    if [[ ${SW_VERSION} != "" ]]; then
+        TAGS="7.3-alpine-v3.9-swow 7.3-alpine-v3.10-swow 7.3-alpine-v3.11-swow 7.4-alpine-v3.9-swow 7.4-alpine-v3.10-swow 7.4-alpine-v3.11-swow"
+        SW_VERSION="v${SW_VERSION}"
+        for TAG in ${TAGS}; do
+            BASETAG=${TAG}
+            check_or_push "${TAG}-${SW_VERSION}"
+        done
+    fi
+fi
+
 if [[ ${TASK} == "publish-base" ]]; then
     # Push base image
     TAGS="7.2-alpine-v3.9-base 7.3-alpine-v3.9-base 7.3-alpine-v3.10-base 7.3-alpine-v3.11-base 7.4-alpine-v3.9-base 7.4-alpine-v3.10-base 7.4-alpine-v3.11-base"
