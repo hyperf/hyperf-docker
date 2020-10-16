@@ -1,0 +1,12 @@
+name: Build Docker
+
+on: [push, pull_request]
+
+jobs:
+  build-7.3-alpine-v3.9-swow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Build
+        run: export PHP_VERSION=7.4 && export ALPINE_VERSION=3.11 && export SW_VERSION=develop && docker-compose build alpine-swow
