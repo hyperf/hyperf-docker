@@ -18,7 +18,7 @@ ARG SW_VERSION
 ##
 ENV SW_VERSION=${SW_VERSION:-"develop"} \
     #  install and remove building packages
-    PHPIZE_DEPS="autoconf automake gcc g++ make php7-dev php7-pear file"
+    PHPIZE_DEPS="autoconf automake gcc g++ make php7-dev php7-pear file re2c"
 
 # update
 RUN set -ex \
