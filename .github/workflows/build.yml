@@ -17,6 +17,6 @@ jobs:
       - name: Login
         run: docker login docker.pkg.github.com -u hyperf -p ${{ secrets.GITHUB_TOKEN }}
       - name: Tag
-        run: docker tag hyperf/hyperf:$PHP_VERSION-alpine-$vALPINE_VERSION-swow-$SW_VERSION docker.pkg.github.com/hyperf/hyperf-docker/hyperf:$PHP_VERSION-alpine-$vALPINE_VERSION-swow-$SW_VERSION
+        run: docker tag hyperf/hyperf:$PHP_VERSION-alpine-v$ALPINE_VERSION-swow-$SW_VERSION docker.pkg.github.com/hyperf/hyperf-docker/hyperf:$PHP_VERSION-alpine-v$ALPINE_VERSION-swow-$SW_VERSION
       - name: Push
-        run: docker push docker.pkg.github.com/hyperf/hyperf-docker/hyperf:$PHP_VERSION-alpine-$vALPINE_VERSION-swow-$SW_VERSION
+        run: docker push docker.pkg.github.com/hyperf/hyperf-docker/hyperf:$PHP_VERSION-alpine-v$ALPINE_VERSION-swow-$SW_VERSION
