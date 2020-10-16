@@ -1,0 +1,36 @@
+name: Build PHP74 Swow
+
+on: [push]
+env:
+  ENGINE: swow
+  PHP_VERSION: 7.4
+  SW_VERSION: develop
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+jobs:
+  build-v309:
+    runs-on: ubuntu-latest
+    env:
+      ALPINE_VERSION: "3.9"
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Build
+        run: ./.github/workflows/build.sh
+  build-v310:
+    runs-on: ubuntu-latest
+    env:
+      ALPINE_VERSION: "3.10"
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Build
+        run: ./.github/workflows/build.sh
+  build-v311:
+    runs-on: ubuntu-latest
+    env:
+      ALPINE_VERSION: "3.11"
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Build
+        run: ./.github/workflows/build.sh
