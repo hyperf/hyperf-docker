@@ -5,8 +5,7 @@ set -e
 export ENGINE=${1}
 export VERSION=${2}
 export CHECK=${!#}
-export TAGS="7.4-alpine-v3.9 7.4-alpine-v3.10 7.4-alpine-v3.11"
-#export TAGS="7.3-alpine-v3.9 7.3-alpine-v3.10 7.3-alpine-v3.11 7.4-alpine-v3.9 7.4-alpine-v3.10 7.4-alpine-v3.11"
+export TAGS="7.3-alpine-v3.9 7.3-alpine-v3.10 7.3-alpine-v3.11 7.4-alpine-v3.9 7.4-alpine-v3.10 7.4-alpine-v3.11"
 
 function pull() {
     for TAG in ${TAGS}; do
