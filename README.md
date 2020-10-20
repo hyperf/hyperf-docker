@@ -13,8 +13,10 @@ support:
 - [`7.2-alpine-v3.9-cli-*`, `7.2-alpine-v3.9-cli`, `latest`](https://github.com/hyperf-cloud/hyperf-docker/blob/master/7.2/alpine/cli/Dockerfile)
 - [`7.2-alpine-v3.9-base`](https://github.com/hyperf-cloud/hyperf-docker/blob/master/7.2/alpine/base/Dockerfile)
 - [`7.3-alpine-v3.9-cli-*`, `7.3-alpine-v3.9-cli`](https://github.com/hyperf-cloud/hyperf-docker/blob/master/7.3/alpine/cli/Dockerfile)
+- [`7.3-alpine-v3.9-swow-*`, `7.3-alpine-v3.9-swow`](https://github.com/hyperf-cloud/hyperf-docker/blob/master/7.3/alpine/swow/Dockerfile)
 - [`7.3-alpine-v3.9-base`](https://github.com/hyperf-cloud/hyperf-docker/blob/master/7.3/alpine/base/Dockerfile)
 - [`7.4-alpine-v3.9-cli-*`, `7.4-alpine-v3.9-cli`](https://github.com/hyperf-cloud/hyperf-docker/blob/master/7.4/alpine/cli/Dockerfile)
+- [`7.4-alpine-v3.9-swow-*`, `7.4-alpine-v3.9-swow`](https://github.com/hyperf-cloud/hyperf-docker/blob/master/7.4/alpine/cli/Dockerfile)
 - [`7.4-alpine-v3.9-base`](https://github.com/hyperf-cloud/hyperf-docker/blob/master/7.4/alpine/base/Dockerfile)
 
 # Quick reference
