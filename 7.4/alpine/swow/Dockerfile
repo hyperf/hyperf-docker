@@ -37,7 +37,7 @@ RUN set -ex \
     && ln -s /usr/bin/phpize7 /usr/local/bin/phpize \
     && ln -s /usr/bin/php-config7 /usr/local/bin/php-config \
     && ( \
-        cd swow \
+        cd swow/ext \
         && phpize \
         && ./configure \
         && make -s -j$(nproc) && make install \
