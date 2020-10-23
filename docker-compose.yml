@@ -12,13 +12,13 @@ services:
         ALPINE_VERSION: ${ALPINE_VERSION}
 
   # swoole image
-  alpine-cli:
-    image: "hyperf/hyperf:${PHP_VERSION}-alpine-v${ALPINE_VERSION}-cli-v${SWOOLE_VERSION}"
+  alpine-swoole:
+    image: "hyperf/hyperf:${PHP_VERSION}-alpine-v${ALPINE_VERSION}-swoole-${SW_VERSION}"
     build:
-      context: "${PHP_VERSION}/alpine/cli"
+      context: "${PHP_VERSION}/alpine/swoole"
       args:
         ALPINE_VERSION: ${ALPINE_VERSION}
-        SWOOLE_VERSION: ${SWOOLE_VERSION}
+        SW_VERSION: ${SW_VERSION}
 
   # swow image
   alpine-swow:

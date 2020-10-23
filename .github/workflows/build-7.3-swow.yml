@@ -2,9 +2,9 @@ name: Build PHP73 Swow
 
 on: [push]
 env:
-  ENGINE: swow
-  PHP_VERSION: 7.3
-  SW_VERSION: develop
+  ENGINE: "swow"
+  PHP_VERSION: "7.3"
+  SW_VERSION: "develop"
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 jobs:
   build:

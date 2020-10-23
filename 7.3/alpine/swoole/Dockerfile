@@ -11,12 +11,12 @@ FROM hyperf/hyperf:7.3-alpine-v${ALPINE_VERSION}-base
 
 LABEL maintainer="Hyperf Developers <group@hyperf.io>" version="1.0" license="MIT"
 
-ARG SWOOLE_VERSION
+ARG SW_VERSION
 
 ##
 # ---------- env settings ----------
 ##
-ENV SWOOLE_VERSION=${SWOOLE_VERSION:-"4.5.2"} \
+ENV SW_VERSION=${SW_VERSION:-"4.5.2"} \
     #  install and remove building packages
     PHPIZE_DEPS="autoconf dpkg-dev dpkg file g++ gcc libc-dev make php7-dev php7-pear pkgconf re2c pcre-dev pcre2-dev zlib-dev libtool automake"
 
@@ -28,7 +28,7 @@ RUN set -ex \
     && apk add --no-cache --virtual .build-deps $PHPIZE_DEPS libaio-dev openssl-dev \
     # download
     && cd /tmp \
-    && curl -SL "https://github.com/swoole/swoole-src/archive/v${SWOOLE_VERSION}.tar.gz" -o swoole.tar.gz \
+    && curl -SL "https://github.com/swoole/swoole-src/archive/${SW_VERSION}.tar.gz" -o swoole.tar.gz \
     && ls -alh \
     # php extension:swoole
     && cd /tmp \

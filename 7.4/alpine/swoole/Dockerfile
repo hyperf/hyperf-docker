@@ -1,22 +1,24 @@
-# hyperf/hyperf:7.2
+# hyperf/hyperf:7.4
 #
 # @link     https://www.hyperf.io
 # @document https://doc.hyperf.io
 # @contact  group@hyperf.io
 # @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
 
-FROM hyperf/hyperf:7.2-alpine-v3.9-base
+ARG ALPINE_VERSION
+
+FROM hyperf/hyperf:7.4-alpine-v${ALPINE_VERSION}-base
 
 LABEL maintainer="Hyperf Developers <group@hyperf.io>" version="1.0" license="MIT"
 
-ARG SWOOLE_VERSION
+ARG SW_VERSION
 
 ##
 # ---------- env settings ----------
 ##
-ENV SWOOLE_VERSION=${SWOOLE_VERSION:-"4.5.2"} \
+ENV SW_VERSION=${SW_VERSION:-"4.5.2"} \
     #  install and remove building packages
-    PHPIZE_DEPS="autoconf dpkg-dev dpkg file g++ gcc libc-dev make php7-dev php7-pear pkgconf re2c pcre-dev zlib-dev libtool automake"
+    PHPIZE_DEPS="autoconf dpkg-dev dpkg file g++ gcc libc-dev make php7-dev php7-pear pkgconf re2c pcre-dev pcre2-dev zlib-dev libtool automake"
 
 # update
 RUN set -ex \
@@ -26,12 +28,14 @@ RUN set -ex \
     && apk add --no-cache --virtual .build-deps $PHPIZE_DEPS libaio-dev openssl-dev \
     # download
     && cd /tmp \
-    && curl -SL "https://github.com/swoole/swoole-src/archive/v${SWOOLE_VERSION}.tar.gz" -o swoole.tar.gz \
+    && curl -SL "https://github.com/swoole/swoole-src/archive/${SW_VERSION}.tar.gz" -o swoole.tar.gz \
     && ls -alh \
     # php extension:swoole
     && cd /tmp \
     && mkdir -p swoole \
     && tar -xf swoole.tar.gz -C swoole --strip-components=1 \
+    && ln -s /usr/bin/phpize7 /usr/local/bin/phpize \
+    && ln -s /usr/bin/php-config7 /usr/local/bin/php-config \
     && ( \
         cd swoole \
         && phpize \
@@ -52,5 +56,5 @@ RUN set -ex \
     && php --ri swoole \
     # ---------- clear works ----------
     && apk del .build-deps \
-    && rm -rf /var/cache/apk/* /tmp/* /usr/share/man \
+    && rm -rf /var/cache/apk/* /tmp/* /usr/share/man /usr/local/bin/php* \
     && echo -e "\033[42;37m Build Completed :).\033[0m\n"

@@ -1,10 +1,10 @@
-name: Build PHP74 Swow
+name: Build PHP73 Swoole
 
 on: [push]
 env:
-  ENGINE: "swow"
-  PHP_VERSION: "7.4"
-  SW_VERSION: "develop"
+  ENGINE: "swoole"
+  PHP_VERSION: "7.3"
+  SW_VERSION: "v4.5.5"
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 jobs:
   build:
