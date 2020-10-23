@@ -1,21 +1,22 @@
-name: Build PHP73 Swoole
+name: Build Swow
 
 on: [push]
 env:
-  ENGINE: "swoole"
-  PHP_VERSION: "7.3"
-  SW_VERSION: "v4.5.5"
+  ENGINE: "swow"
+  SW_VERSION: "develop"
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 jobs:
   build:
-    name: Build Alpine ${{ matrix.alpine-version }} on ${{ matrix.os }}
+    name: Build Alpine ${{ matrix.alpine-version }} on PHP ${{ matrix.php-version }}
     runs-on: "${{ matrix.os }}"
     env:
       ALPINE_VERSION: "${{ matrix.alpine-version }}"
+      PHP_VERSION: "${{ matrix.php-version }}"
     strategy:
       matrix:
         # os: [ubuntu-latest, macos-latest, windows-latest]
         os: [ubuntu-latest]
+        php-version: ['7.3', '7.4']
         alpine-version: ['3.9', '3.10', '3.11']
       max-parallel: 3
     steps:
