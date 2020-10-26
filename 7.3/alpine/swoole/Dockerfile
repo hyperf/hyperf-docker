@@ -56,6 +56,7 @@ RUN set -ex \
     && php -v \
     && php -m \
     && php --ri swoole \
+    && composer \
     # ---------- clear works ----------
     && apk del .build-deps \
     && rm -rf /var/cache/apk/* /tmp/* /usr/share/man /usr/local/bin/php* \
