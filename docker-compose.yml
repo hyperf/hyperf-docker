@@ -19,6 +19,7 @@ services:
       args:
         ALPINE_VERSION: ${ALPINE_VERSION}
         SW_VERSION: ${SW_VERSION}
+        COMPOSER_VERSION: ${COMPOSER_VERSION}
 
   # swow image
   alpine-swow:
@@ -28,6 +29,7 @@ services:
       args:
         ALPINE_VERSION: ${ALPINE_VERSION}
         SW_VERSION: ${SW_VERSION}
+        COMPOSER_VERSION: ${COMPOSER_VERSION}
 
   # dev image
   alpine-dev:

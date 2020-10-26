@@ -12,11 +12,13 @@ FROM hyperf/hyperf:7.3-alpine-v${ALPINE_VERSION}-base
 LABEL maintainer="Hyperf Developers <group@hyperf.io>" version="1.0" license="MIT"
 
 ARG SW_VERSION
+ARG COMPOSER_VERSION
 
 ##
 # ---------- env settings ----------
 ##
 ENV SW_VERSION=${SW_VERSION:-"develop"} \
+    COMPOSER_VERSION=${COMPOSER_VERSION:-"2.0.2"} \
     #  install and remove building packages
     PHPIZE_DEPS="autoconf automake gcc g++ make php7-dev php7-pear file re2c"
 
@@ -46,7 +48,7 @@ RUN set -ex \
     && echo "extension=swow.so" > /etc/php7/conf.d/50_swow.ini \
     # install composer
     && cd /tmp \
-    && wget https://github.com/composer/composer/releases/download/1.10.15/composer.phar \
+    && wget https://github.com/composer/composer/releases/download/${COMPOSER_VERSION}/composer.phar \
     && chmod u+x composer.phar \
     && mv composer.phar /usr/local/bin/composer \
     # php info
