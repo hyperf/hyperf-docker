@@ -38,3 +38,4 @@ services:
       context: "${PHP_VERSION}/alpine/dev"
       args:
         ALPINE_VERSION: ${ALPINE_VERSION}
+        COMPOSER_VERSION: ${COMPOSER_VERSION}

@@ -1,9 +1,7 @@
-name: Build Swoole
+name: Build Develop Image
 
 on: [push]
 env:
-  ENGINE: "swoole"
-  SW_VERSION: "v4.5.6"
   COMPOSER_VERSION: "2.0.2"
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 jobs:
@@ -24,4 +22,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Build
-        run: ./.github/workflows/build.sh
+        run: docker-compose build alpine-dev
+      - name: Login
+        run: docker login --username limingxinleo -p ${{ secrets.DOCKERHUB_ACCESSTOKEN }}
+      - name: Push
+        run: docker push hyperf/hyperf:${{ matrix.php-version }}-alpine-v${{ matrix.alpine-version }}-dev
+

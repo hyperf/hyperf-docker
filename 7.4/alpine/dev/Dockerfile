@@ -11,6 +11,10 @@ FROM hyperf/hyperf:7.4-alpine-v${ALPINE_VERSION}-base
 
 LABEL maintainer="Hyperf Developers <group@hyperf.io>" version="1.0" license="MIT"
 
+ARG COMPOSER_VERSION
+
+ENV COMPOSER_VERSION=${COMPOSER_VERSION:-"2.0.2"}
+
 ##
 # ---------- env settings ----------
 ##
@@ -25,7 +29,7 @@ RUN set -ex \
     && ln -s /usr/bin/php-config7 /usr/local/bin/php-config \
     # install composer
     && cd /tmp \
-    && wget https://github.com/composer/composer/releases/download/1.10.13/composer.phar \
+    && wget https://github.com/composer/composer/releases/download/${COMPOSER_VERSION}/composer.phar \
     && chmod u+x composer.phar \
     && mv composer.phar /usr/local/bin/composer \
     # php info
