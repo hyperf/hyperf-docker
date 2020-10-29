@@ -61,6 +61,7 @@ RUN set -ex \
     php7-xml \
     php7-xmlreader \
     php7-pcntl \
+    php7-opcache \
     && ln -sf /usr/bin/php7 /usr/bin/php \
     && apk del --purge *-dev \
     && rm -rf /var/cache/apk/* /tmp/* /usr/share/man /usr/share/php7 \

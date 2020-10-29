@@ -45,6 +45,7 @@ RUN set -ex \
         && make -s -j$(nproc) && make install \
     ) \
     && echo "memory_limit=1G" > /etc/php7/conf.d/00_default.ini \
+    && echo "opcache.enable_cli = 'On'" >> /etc/php7/conf.d/00_opcache.ini \
     && echo "extension=swow.so" > /etc/php7/conf.d/50_swow.ini \
     # install composer
     && cd /tmp \
