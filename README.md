@@ -30,13 +30,13 @@ Added [Dockerfile](https://github.com/hyperf-cloud/hyperf-docker/blob/master/Doc
 
 ```bash
 # Build base image
-./build build
+./build.sh build
 
 # Check images
-./build publish --check
+./build.sh publish --check
 
 # Push images
-./build publish
+./build.sh publish
 ```
 
 # more demo
