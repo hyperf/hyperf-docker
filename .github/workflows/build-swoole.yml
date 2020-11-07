@@ -3,8 +3,8 @@ name: Build Swoole
 on: [push]
 env:
   ENGINE: "swoole"
-  SW_VERSION: "v4.5.6"
-  COMPOSER_VERSION: "2.0.4"
+  SW_VERSION: "v4.5.7"
+  COMPOSER_VERSION: "2.0.5"
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 jobs:
   build:
