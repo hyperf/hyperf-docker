@@ -17,7 +17,7 @@ ARG COMPOSER_VERSION
 ##
 # ---------- env settings ----------
 ##
-ENV SW_VERSION=${SW_VERSION:-"4.5.2"} \
+ENV SW_VERSION=${SW_VERSION:-"v4.5.2"} \
     COMPOSER_VERSION=${COMPOSER_VERSION:-"2.0.2"} \
     #  install and remove building packages
     PHPIZE_DEPS="autoconf dpkg-dev dpkg file g++ gcc libc-dev make php7-dev php7-pear pkgconf re2c pcre-dev pcre2-dev zlib-dev libtool automake"
@@ -30,7 +30,7 @@ RUN set -ex \
     && apk add --no-cache --virtual .build-deps $PHPIZE_DEPS libaio-dev openssl-dev \
     # download
     && cd /tmp \
-    && curl -SL "https://github.com/swoole/swoole-src/archive/v${SW_VERSION}.tar.gz" -o swoole.tar.gz \
+    && curl -SL "https://github.com/swoole/swoole-src/archive/${SW_VERSION}.tar.gz" -o swoole.tar.gz \
     && ls -alh \
     # php extension:swoole
     && cd /tmp \
