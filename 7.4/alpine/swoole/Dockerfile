@@ -30,7 +30,7 @@ RUN set -ex \
     && apk add --no-cache --virtual .build-deps $PHPIZE_DEPS libaio-dev openssl-dev \
     # download
     && cd /tmp \
-    && curl -SL "https://github.com/swoole/swoole-src/archive/${SW_VERSION}.tar.gz" -o swoole.tar.gz \
+    && curl -SL "https://github.com/swoole/swoole-src/archive/v${SW_VERSION}.tar.gz" -o swoole.tar.gz \
     && ls -alh \
     # php extension:swoole
     && cd /tmp \
