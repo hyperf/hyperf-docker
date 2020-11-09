@@ -17,7 +17,7 @@ ARG COMPOSER_VERSION
 ##
 # ---------- env settings ----------
 ##
-ENV SW_VERSION=${SW_VERSION:-"4.5.2"} \
+ENV SW_VERSION=${SW_VERSION:-"v4.5.7"} \
     COMPOSER_VERSION=${COMPOSER_VERSION:-"2.0.2"} \
     #  install and remove building packages
     PHPIZE_DEPS="autoconf dpkg-dev dpkg file g++ gcc libc-dev make php7-dev php7-pear pkgconf re2c pcre-dev pcre2-dev zlib-dev libtool automake"

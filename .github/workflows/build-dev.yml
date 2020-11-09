@@ -2,7 +2,7 @@ name: Build Develop Image
 
 on: [push]
 env:
-  COMPOSER_VERSION: "2.0.4"
+  COMPOSER_VERSION: "2.0.6"
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 jobs:
   build:
