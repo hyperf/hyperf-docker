@@ -1,24 +1,23 @@
-name: Build Swoole
+name: Build Swoole for PHP73
 
 on: [push]
 env:
   ENGINE: 'swoole'
   SW_VERSION: 'v4.5.9'
-  COMPOSER_VERSION: '2.0.7'
+  COMPOSER_VERSION: '2.0.8'
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_ACCESSTOKEN }}
+  PHP_VERSION: '7.3'
 jobs:
   build:
-    name: Build Alpine ${{ matrix.alpine-version }} on PHP ${{ matrix.php-version }}
+    name: Build Alpine ${{ matrix.alpine-version }}
     runs-on: '${{ matrix.os }}'
     env:
       ALPINE_VERSION: '${{ matrix.alpine-version }}'
-      PHP_VERSION: '${{ matrix.php-version }}'
     strategy:
       matrix:
         # os: [ubuntu-latest, macos-latest, windows-latest]
         os: [ubuntu-latest]
-        php-version: ['7.3', '7.4']
         alpine-version: ['3.9', '3.10', '3.11']
       max-parallel: 6
     steps:

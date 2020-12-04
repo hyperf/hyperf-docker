@@ -2,20 +2,19 @@ name: Build Develop Image
 
 on: [push]
 env:
-  COMPOSER_VERSION: "2.0.6"
+  COMPOSER_VERSION: "2.0.8"
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  PHP_VERSION: '7.4'
 jobs:
   build:
-    name: Build Alpine ${{ matrix.alpine-version }} on PHP ${{ matrix.php-version }}
+    name: Build Alpine ${{ matrix.alpine-version }}
     runs-on: "${{ matrix.os }}"
     env:
       ALPINE_VERSION: "${{ matrix.alpine-version }}"
-      PHP_VERSION: "${{ matrix.php-version }}"
     strategy:
       matrix:
         # os: [ubuntu-latest, macos-latest, windows-latest]
         os: [ubuntu-latest]
-        php-version: ['7.3', '7.4']
         alpine-version: ['3.9', '3.10', '3.11']
       max-parallel: 6
     steps:
@@ -26,5 +25,5 @@ jobs:
       - name: Login
         run: docker login --username limingxinleo -p ${{ secrets.DOCKERHUB_ACCESSTOKEN }}
       - name: Push
-        run: docker push hyperf/hyperf:${{ matrix.php-version }}-alpine-v${{ matrix.alpine-version }}-dev
+        run: docker push hyperf/hyperf:${PHP_VERSION}-alpine-v${{ matrix.alpine-version }}-dev
 
