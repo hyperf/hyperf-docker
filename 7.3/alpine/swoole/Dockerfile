@@ -27,7 +27,7 @@ RUN set -ex \
     && apk update \
     # for swoole extension libaio linux-headers
     && apk add --no-cache libstdc++ openssl git bash \
-    && apk add --no-cache --virtual .build-deps $PHPIZE_DEPS libaio-dev openssl-dev \
+    && apk add --no-cache --virtual .build-deps $PHPIZE_DEPS libaio-dev openssl-dev curl-dev \
     # download
     && cd /tmp \
     && curl -SL "https://github.com/swoole/swoole-src/archive/${SW_VERSION}.tar.gz" -o swoole.tar.gz \
@@ -41,7 +41,7 @@ RUN set -ex \
     && ( \
         cd swoole \
         && phpize \
-        && ./configure --enable-mysqlnd --enable-openssl --enable-http2 \
+        && ./configure --enable-openssl --enable-http2 --enable-swoole-curl --enable-swoole-json \
         && make -s -j$(nproc) && make install \
     ) \
     && echo "memory_limit=1G" > /etc/php7/conf.d/00_default.ini \
