@@ -5,7 +5,7 @@ tag format:
 - 7.4: php version, support 7.3/7.4
 - alpine: base images, supoort alpine/centos
 - v3.11: alpine version, support alpine 3.9 and 3.10 and 3.11
-- swoole: support base/dev/swoole/swoole
+- swoole: support base/dev/swoole/swow
 - v4.5.5: swoole/swow version
 
 support:
