@@ -1,8 +1,8 @@
-name: Build Develop Image
+name: Build Develop for PHP73
 
 on: [push]
 env:
-  COMPOSER_VERSION: "2.0.8"
+  COMPOSER_VERSION: "2.0.11"
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   PHP_VERSION: '7.3'
 jobs:
