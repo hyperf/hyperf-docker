@@ -24,7 +24,7 @@ ENV PHPIZE_DEPS="autoconf dpkg-dev dpkg file g++ gcc libc-dev make php7-dev php7
 RUN set -ex \
     && apk update \
     && apk add --no-cache libstdc++ openssl git bash \
-    && apk add --no-cache $PHPIZE_DEPS libaio-dev openssl-dev \
+    && apk add --no-cache $PHPIZE_DEPS libaio-dev openssl-dev curl-dev \
     && ln -s /usr/bin/phpize7 /usr/local/bin/phpize \
     && ln -s /usr/bin/php-config7 /usr/local/bin/php-config \
     # install composer
