@@ -35,6 +35,7 @@ RUN set -ex \
     tzdata \
     pcre \
     php7 \
+    php-common=7.3 \
     php7-bcmath \
     php7-curl \
     php7-ctype \
