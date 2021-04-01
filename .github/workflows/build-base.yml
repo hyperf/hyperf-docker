@@ -4,10 +4,10 @@ on:
   push:
   workflow_dispatch:
     inputs:
-      publish:
-        description: 'Whether publish to dockerhub'
+      event:
+        description: 'Input your event'
         required: true
-        default: false
+        default: ''
 
 env:
   DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_ACCESSTOKEN }}
@@ -22,9 +22,9 @@ jobs:
       - name: Build
         run: ./build.sh build
       - name: Push Images to Docker Hub
-        if: ${{ github.event.inputs.event}}
+        if: ${{ github.event.inputs.event == 'publish' }}
         run: |
           docker login --username limingxinleo -p $DOCKERHUB_TOKEN
-          echo 123
+          ./build.sh publish
 
 
