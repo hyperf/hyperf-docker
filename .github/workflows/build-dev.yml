@@ -1,0 +1,32 @@
+name: Build Develop
+
+on: [ push ]
+env:
+  COMPOSER_VERSION: '2.0.12'
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+jobs:
+  build:
+    name: Build PHP ${{ matrix.php-version }} Alpine ${{ matrix.alpine-version }}
+    runs-on: '${{ matrix.os }}'
+    env:
+      ALPINE_VERSION: '${{ matrix.alpine-version }}'
+      PHP_VERSION: '${{ matrix.php-version }}'
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ]
+        alpine-version: [ '3.9', '3.10', '3.11', '3.12' ]
+        php-version: [ '7.3', '7.4' ]
+        exclude:
+          - php-version: '7.3'
+            alpine-version: '3.12'
+      max-parallel: 8
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Build
+        run: docker-compose build alpine-dev
+      - name: Login
+        run: docker login --username limingxinleo -p ${{ secrets.DOCKERHUB_ACCESSTOKEN }}
+      - name: Push
+        run: docker push hyperf/hyperf:${PHP_VERSION}-alpine-v${{ matrix.alpine-version }}-dev
+
