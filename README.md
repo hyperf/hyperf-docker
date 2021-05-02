@@ -1,10 +1,12 @@
-# Supported tags and respective Dockerfile links
+# hyperf-docker
+
+## Supported tags and respective Dockerfile links
 
 tag format:
 
-- 7.4: php version, support 7.3/7.4
-- alpine: base images, supoort alpine/centos
-- v3.11: alpine version, support alpine 3.9 and 3.10 and 3.11
+- 7.4: php version, support 7.3/7.4, Recommend 7.4, 8.0 is on the way
+- alpine: base images, supoort alpine/ubuntu, recommend alpine
+- v3.11: alpine version, support alpine 3.9/3.10/3.11/3.12, recommend 3.11
 - swoole: support base/dev/swoole/swow
 - v4.5.5: swoole/swow version
 
@@ -17,16 +19,16 @@ support:
 - [`7.4-alpine-v3.9-swow-*`, `7.4-alpine-v3.9-swow`](https://github.com/hyperf-cloud/hyperf-docker/blob/master/7.4/alpine/swoole/Dockerfile)
 - [`7.4-alpine-v3.9-base`](https://github.com/hyperf-cloud/hyperf-docker/blob/master/7.4/alpine/base/Dockerfile)
 
-# Quick reference
+## Quick reference
 
 - [hyperf](https://github.com/hyperf)
 - [hyperf doc](https://doc.hyperf.io)
 
-# How to use this image
+## How to use this image
 
 Added [Dockerfile](https://github.com/hyperf-cloud/hyperf-docker/blob/master/Dockerfile) to your project.
 
-# How to build and push images
+## How to build and push images
 
 ```bash
 # Build base image
@@ -39,7 +41,7 @@ Added [Dockerfile](https://github.com/hyperf-cloud/hyperf-docker/blob/master/Doc
 ./build.sh publish
 ```
 
-# more demo
+## more demo
 
 - kafka
 
