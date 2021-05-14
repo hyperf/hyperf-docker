@@ -3,7 +3,7 @@ name: Build Swow
 on: [ push ]
 env:
   ENGINE: 'swow'
-  SW_VERSION: 'v0.1.0-nightly20210308'
+  SW_VERSION: 'develop'
   COMPOSER_VERSION: '2.0.13'
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_ACCESSTOKEN }}

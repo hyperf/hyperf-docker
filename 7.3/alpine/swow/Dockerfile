@@ -20,7 +20,7 @@ ARG COMPOSER_VERSION
 ENV SW_VERSION=${SW_VERSION:-"develop"} \
     COMPOSER_VERSION=${COMPOSER_VERSION:-"2.0.2"} \
     #  install and remove building packages
-    PHPIZE_DEPS="autoconf automake gcc g++ make php7-dev php7-pear file re2c"
+    PHPIZE_DEPS="autoconf automake gcc g++ make php7-dev php7-pear file re2c openssl-dev curl-dev"
 
 # update
 RUN set -ex \
@@ -41,7 +41,7 @@ RUN set -ex \
     && ( \
         cd swow/ext \
         && phpize \
-        && ./configure \
+        && ./configure --enable-swow --enable-swow-ssl --enable-swow-curl \
         && make -s -j$(nproc) && make install \
     ) \
     && echo "memory_limit=1G" > /etc/php7/conf.d/00_default.ini \
