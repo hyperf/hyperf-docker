@@ -3,7 +3,7 @@ name: Build Swoole
 on: [ push ]
 env:
   ENGINE: 'swoole'
-  SW_VERSION: 'v4.6.6'
+  SW_VERSION: 'v4.6.7'
   COMPOSER_VERSION: '2.0.13'
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_ACCESSTOKEN }}
