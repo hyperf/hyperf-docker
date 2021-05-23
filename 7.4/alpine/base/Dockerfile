@@ -14,15 +14,15 @@ LABEL maintainer="Hyperf Developers <group@hyperf.io>" version="1.0" license="MI
 ARG ALPINE_VERSION
 
 # trust this project public key to trust the packages.
-ADD https://packages.whatwedo.ch/php-alpine.rsa.pub /etc/apk/keys/php-alpine.rsa.pub
+ADD https://alpine-apk-repository.knowyourself.cc/php-alpine.rsa.pub /etc/apk/keys/php-alpine.rsa.pub
 
 ##
 # ---------- building ----------
 ##
 RUN set -ex \
     # change apk source repo
-    && echo "https://packages.whatwedo.ch/php-alpine/v$ALPINE_VERSION/php-7.4" >> /etc/apk/repositories \
-    && echo "@php https://packages.whatwedo.ch/php-alpine/v$ALPINE_VERSION/php-7.4" >> /etc/apk/repositories \
+    && echo "https://alpine-apk-repository.knowyourself.cc/v$ALPINE_VERSION/php-7.4" >> /etc/apk/repositories \
+    && echo "@php https://alpine-apk-repository.knowyourself.cc/v$ALPINE_VERSION/php-7.4" >> /etc/apk/repositories \
     && apk update \
     && apk add --no-cache \
     # Install base packages ('ca-certificates' will install 'nghttp2-libs')

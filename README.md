@@ -4,7 +4,7 @@
 
 tag format:
 
-- 7.4: php version, support 7.3/7.4, Recommend 7.4, 8.0 is on the way
+- 7.4: php version, support 7.3/7.4/8.0, Recommend 7.4
 - alpine: base images, supoort alpine/ubuntu, recommend alpine
 - v3.11: alpine version, support alpine 3.9/3.10/3.11/3.12, recommend 3.11
 - swoole: support base/dev/swoole/swow
@@ -28,17 +28,57 @@ support:
 
 Added [Dockerfile](https://github.com/hyperf-cloud/hyperf-docker/blob/master/Dockerfile) to your project.
 
-## How to build and push images
+## Info
 
-```bash
-# Build base image
-./build.sh build
+Base image contains extensions below:
 
-# Check images
-./build.sh publish --check
+```
+[PHP Modules]
+bcmath
+Core
+ctype
+curl
+date
+dom
+fileinfo
+filter
+gd
+hash
+iconv
+json
+libxml
+mbstring
+mysqlnd
+openssl
+pcntl
+pcre
+PDO
+pdo_mysql
+pdo_sqlite
+Phar
+posix
+readline
+redis
+Reflection
+session
+SimpleXML
+sockets
+sodium
+SPL
+standard
+sysvmsg
+sysvsem
+sysvshm
+tokenizer
+xml
+xmlreader
+xmlwriter
+Zend OPcache
+zip
+zlib
 
-# Push images
-./build.sh publish
+[Zend Modules]
+Zend OPcache
 ```
 
 ## more demo
