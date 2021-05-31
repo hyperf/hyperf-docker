@@ -155,6 +155,8 @@ RUN chmod +x /tmp/swoole-tracker-install.sh \
 
 ```dockerfile
 # fix aliyun oss wrong charset: https://github.com/aliyun/aliyun-oss-php-sdk/issues/101
-RUN apk --no-cache --allow-untrusted --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ add gnu-libiconv
-ENV LD_PRELOAD /usr/lib/preloadable_libiconv.so php
+# https://github.com/docker-library/php/issues/240#issuecomment-762438977
+
+RUN apk --no-cache --allow-untrusted --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ add gnu-libiconv=1.15-r2
+ENV LD_PRELOAD /usr/lib/preloadable_libiconv.so
 ```
