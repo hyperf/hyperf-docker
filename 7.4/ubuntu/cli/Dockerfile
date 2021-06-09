@@ -18,7 +18,7 @@ ARG SWOOLE_VERSION
 ##
 ENV SWOOLE_VERSION=${SWOOLE_VERSION:-"4.5.2"} \
     #  install and remove building packages
-    PHPIZE_DEPS="autoconf dpkg-dev dpkg file g++ gcc libc-dev make php7.4-dev pkgconf re2c libtool automake libaio-dev"
+    PHPIZE_DEPS="autoconf dpkg-dev dpkg file g++ gcc libc-dev make php7.4-dev pkgconf re2c libtool automake libaio-dev libzstd-dev"
 
 # update
 RUN set -ex \
@@ -29,6 +29,15 @@ RUN set -ex \
     && cd /tmp \
     && curl -SL "https://github.com/swoole/swoole-src/archive/v${SWOOLE_VERSION}.tar.gz" -o swoole.tar.gz \
     && ls -alh \
+    # php extension:redis
+    && pecl install igbinary \
+    && yes | pecl install lzf \
+    && pecl install zstd \
+    && echo 'extension=igbinary' > /etc/php/7.4/cli/conf.d/20-igbinary.ini \
+    && echo 'extension=lzf' > /etc/php/7.4/cli/conf.d/20-lzf.ini \
+    && echo 'extension=zstd' > /etc/php/7.4/cli/conf.d/20-zstd.ini \
+    && yes | pecl install redis \
+    && echo 'extension=redis' > /etc/php/7.4/cli/conf.d/20-redis.ini \
     # php extension:swoole
     && cd /tmp \
     && mkdir -p swoole \
