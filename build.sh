@@ -43,7 +43,7 @@ fi
 
 if [[ ${TASK} == "publish" ]]; then
     # Push base image
-    TAGS="7.3-alpine-v3.10-base 7.3-alpine-v3.11-base 7.4-alpine-v3.10-base 7.4-alpine-v3.11-base 7.4-alpine-v3.12-base 8.0-alpine-v3.11-base 8.0-alpine-v3.12-base"
+    TAGS="7.3-alpine-v3.10-base 7.3-alpine-v3.11-base 7.4-alpine-v3.10-base 7.4-alpine-v3.11-base 7.4-alpine-v3.12-base 7.4-alpine-v3.13-base 7.4-alpine-v3.14-base 8.0-alpine-v3.11-base 8.0-alpine-v3.12-base 8.0-alpine-v3.13-base 8.0-alpine-v3.14-base"
     for TAG in ${TAGS}; do
         check_or_push $TAG
     done
