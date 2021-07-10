@@ -11,6 +11,14 @@ services:
       args:
         ALPINE_VERSION: ${ALPINE_VERSION}
 
+  alpine-origin-base:
+    image: "hyperf/hyperf:${PHP_VERSION}-alpine-v${ALPINE_VERSION}-base"
+    build:
+      context: "${PHP_VERSION}/alpine/base"
+      dockerfile: "origin.Dockerfile"
+      args:
+        ALPINE_VERSION: ${ALPINE_VERSION}
+
   # swoole image
   alpine-swoole:
     image: "hyperf/hyperf:${PHP_VERSION}-alpine-v${ALPINE_VERSION}-swoole-${SW_VERSION}"
