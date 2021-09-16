@@ -6,7 +6,7 @@ tag format:
 
 - 7.4: php version, support 7.3/7.4/8.0, Recommend 7.4
 - alpine: base images, supoort alpine/ubuntu, recommend alpine
-- v3.11: alpine version, support alpine 3.10/3.11/3.12, recommend 3.12
+- v3.11: alpine version, support alpine 3.10/3.11/3.12/3.13/3.14, recommend 3.14
 - swoole: support base/dev/swoole/swow
 - v4.5.5: swoole/swow version
 
@@ -15,12 +15,12 @@ support:
 - [`7.3-alpine-v3.11-swoole-*`, `7.3-alpine-v3.11-swoole`](https://github.com/hyperf-cloud/hyperf-docker/blob/master/7.3/alpine/swoole/Dockerfile)
 - [`7.3-alpine-v3.11-swow-*`, `7.3-alpine-v3.11-swow`](https://github.com/hyperf-cloud/hyperf-docker/blob/master/7.3/alpine/swow/Dockerfile)
 - [`7.3-alpine-v3.11-base`](https://github.com/hyperf-cloud/hyperf-docker/blob/master/7.3/alpine/base/Dockerfile)
-- [`7.4-alpine-v3.12-swoole-*`, `7.4-alpine-v3.12-swoole`](https://github.com/hyperf-cloud/hyperf-docker/blob/master/7.4/alpine/swoole/Dockerfile)
-- [`7.4-alpine-v3.12-swow-*`, `7.4-alpine-v3.12-swow`](https://github.com/hyperf-cloud/hyperf-docker/blob/master/7.4/alpine/swoole/Dockerfile)
-- [`7.4-alpine-v3.12-base`](https://github.com/hyperf-cloud/hyperf-docker/blob/master/7.4/alpine/base/Dockerfile)
-- [`8.0-alpine-v3.12-swoole-*`, `8.0-alpine-v3.12-swoole`](https://github.com/hyperf-cloud/hyperf-docker/blob/master/8.0/alpine/swoole/Dockerfile)
-- [`8.0-alpine-v3.12-swow-*`, `8.0-alpine-v3.12-swow`](https://github.com/hyperf-cloud/hyperf-docker/blob/master/8.0/alpine/swoole/Dockerfile)
-- [`8.0-alpine-v3.12-base`](https://github.com/hyperf-cloud/hyperf-docker/blob/master/8.0/alpine/base/Dockerfile)
+- [`7.4-alpine-v3.14-swoole-*`, `7.4-alpine-v3.14-swoole`](https://github.com/hyperf-cloud/hyperf-docker/blob/master/7.4/alpine/swoole/Dockerfile)
+- [`7.4-alpine-v3.14-swow-*`, `7.4-alpine-v3.14-swow`](https://github.com/hyperf-cloud/hyperf-docker/blob/master/7.4/alpine/swoole/Dockerfile)
+- [`7.4-alpine-v3.14-base`](https://github.com/hyperf-cloud/hyperf-docker/blob/master/7.4/alpine/base/Dockerfile)
+- [`8.0-alpine-v3.14-swoole-*`, `8.0-alpine-v3.14-swoole`](https://github.com/hyperf-cloud/hyperf-docker/blob/master/8.0/alpine/swoole/Dockerfile)
+- [`8.0-alpine-v3.14-swow-*`, `8.0-alpine-v3.14-swow`](https://github.com/hyperf-cloud/hyperf-docker/blob/master/8.0/alpine/swoole/Dockerfile)
+- [`8.0-alpine-v3.14-base`](https://github.com/hyperf-cloud/hyperf-docker/blob/master/8.0/alpine/base/Dockerfile)
 
 ## Quick reference
 
