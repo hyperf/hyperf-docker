@@ -86,6 +86,20 @@ Zend OPcache
 
 ## more demo
 
+### PHP 8.x
+
+> For PHP 8.x you have to install `$PHPIZE_DEPS` and use `pecl8` instead of <s>`pecl`</s>.
+
+- grpc
+
+```dockerfile
+RUN apk add --no-cache $PHPIZE_DEPS \
+&& pecl8 install grpc \
+&& echo "extension=grpc.so" > /etc/php8/conf.d/grpc.ini
+```
+
+### PHP 7.x
+
 - kafka
 
 ```dockerfile
