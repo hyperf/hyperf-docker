@@ -55,6 +55,7 @@ RUN set -ex \
     && php -v \
     && php -m \
     && php --ri swoole \
+    && php --ri Zend\ OPcache \
     && composer \
     # ---------- clear works ----------
     && apk del .build-deps \
