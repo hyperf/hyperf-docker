@@ -29,6 +29,8 @@ jobs:
             alpine-version: '3.10'
           - php-version: '8.1'
             alpine-version: '3.10'
+          - php-version: '8.1'
+            alpine-version: '3.11'
       max-parallel: 8
     steps:
       - name: Checkout code
