@@ -1,4 +1,4 @@
-# hyperf/hyperf:7.3
+# hyperf/hyperf:8.1
 #
 # @link     https://www.hyperf.io
 # @document https://hyperf.wiki
@@ -21,8 +21,8 @@ ADD https://alpine-apk-repository.knowyourself.cc/php-alpine.rsa.pub /etc/apk/ke
 ##
 RUN set -ex \
     # change apk source repo
-    && echo "https://alpine-apk-repository.knowyourself.cc/v$ALPINE_VERSION/php-7.3" >> /etc/apk/repositories \
-    && echo "@php https://alpine-apk-repository.knowyourself.cc/v$ALPINE_VERSION/php-7.3" >> /etc/apk/repositories \
+    && echo "https://alpine-apk-repository.knowyourself.cc/v$ALPINE_VERSION/php-8.1" >> /etc/apk/repositories \
+    && echo "@php https://alpine-apk-repository.knowyourself.cc/v$ALPINE_VERSION/php-8.1" >> /etc/apk/repositories \
     && apk update \
     && apk add --no-cache \
     # Install base packages ('ca-certificates' will install 'nghttp2-libs')
@@ -34,38 +34,36 @@ RUN set -ex \
     libressl \
     tzdata \
     pcre \
-    php7 \
-    php-common=7.3 \
-    php7-bcmath \
-    php7-curl \
-    php7-ctype \
-    php7-dom \
-    php7-gd \
-    php7-iconv \
-    php7-json \
-    php7-mbstring \
-    php7-mysqlnd \
-    php7-openssl \
-    php7-pdo \
-    php7-pdo_mysql \
-    php7-pdo_sqlite \
-    php7-phar \
-    php7-posix \
-    php7-redis \
-    php7-sockets \
-    php7-sodium \
-    php7-sysvshm \
-    php7-sysvmsg \
-    php7-sysvsem \
-    php7-zip \
-    php7-zlib \
-    php7-xml \
-    php7-xmlreader \
-    php7-pcntl \
-    php7-opcache \
-    && ln -sf /usr/bin/php7 /usr/bin/php \
+    php8 \
+    php8-bcmath \
+    php8-curl \
+    php8-ctype \
+    php8-dom \
+    php8-gd \
+    php8-iconv \
+    php8-mbstring \
+    php8-mysqlnd \
+    php8-openssl \
+    php8-pdo \
+    php8-pdo_mysql \
+    php8-pdo_sqlite \
+    php8-phar \
+    php8-posix \
+    php8-redis \
+    php8-sockets \
+    php8-sodium \
+    php8-sysvshm \
+    php8-sysvmsg \
+    php8-sysvsem \
+    php8-zip \
+    php8-zlib \
+    php8-xml \
+    php8-xmlreader \
+    php8-pcntl \
+    php8-opcache \
+    && ln -sf /usr/bin/php8 /usr/bin/php \
     && apk del --purge *-dev \
-    && rm -rf /var/cache/apk/* /tmp/* /usr/share/man /usr/share/php7 \
+    && rm -rf /var/cache/apk/* /tmp/* /usr/share/man /usr/share/php8 \
     && php -v \
     && php -m \
     && echo -e "\033[42;37m Build Completed :).\033[0m\n"
