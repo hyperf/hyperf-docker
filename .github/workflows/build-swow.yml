@@ -18,7 +18,7 @@ jobs:
       matrix:
         os: [ ubuntu-latest ]
         alpine-version: [ '3.10', '3.11', '3.12', '3.13', '3.14', '3.15' ]
-        php-version: [ '7.3', '7.4', '8.0' ]
+        php-version: [ '7.3', '7.4', '8.0', '8.1' ]
         exclude:
           - php-version: '7.3'
             alpine-version: '3.12'
@@ -29,6 +29,8 @@ jobs:
           - php-version: '7.3'
             alpine-version: '3.15'
           - php-version: '8.0'
+            alpine-version: '3.10'
+          - php-version: '8.1'
             alpine-version: '3.10'
       max-parallel: 8
     steps:
