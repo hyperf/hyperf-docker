@@ -108,26 +108,7 @@ RUN apk add --no-cache librdkafka-dev \
 && echo "extension=rdkafka.so" > /etc/php7/conf.d/rdkafka.ini
 ```
 
-- aerospike
-
-```dockerfile
-# aerospike @see https://github.com/aerospike/aerospike-client-php/issues/24
-RUN git clone https://gitlab.innotechx.com/liyibocheng/aerospike-c-client.git /tmp/aerospike-client-c \
-&& ( \
-    cd /tmp/aerospike-client-c \
-    && make \
-) \
-&& export PREFIX=/tmp/aerospike-client-c/target/Linux-x86_64 \
-&& export DOWNLOAD_C_CLIENT=0 \
-&& git clone https://gitlab.innotechx.com/liyibocheng/aerospike-client-php.git /tmp/aerospike-client-php \
-&& ( \
-    cd /tmp/aerospike-client-php/src \
-    && ./build.sh \
-    && make install \
-    && echo "extension=aerospike.so" > /etc/php7/conf.d/aerospike.ini \
-    && echo "aerospike.udf.lua_user_path=/usr/local/aerospike/usr-lua" >> /etc/php7/conf.d/aerospike.ini \
-)
-```
+- aerospike: https://github.com/aerospike/aerospike-client-php/issues/24
 
 - mongodb
 
@@ -147,7 +128,7 @@ RUN apk add --no-cache protobuf \
 && echo "extension=protobuf.so" > /etc/php7/conf.d/protobuf.ini
 ```
 
--  swoole tracker
+- swoole tracker
 
 ```dockerfile
 # download swoole tracker
