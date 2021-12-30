@@ -4,7 +4,7 @@ on: [ push ]
 env:
   ENGINE: 'swoole'
   SW_VERSION: 'v4.8.5'
-  COMPOSER_VERSION: '2.2.1'
+  COMPOSER_VERSION: '2.2.2'
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_ACCESSTOKEN }}
 jobs:
