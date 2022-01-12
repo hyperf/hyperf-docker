@@ -4,7 +4,7 @@ on: [ push ]
 env:
   ENGINE: 'swoole'
   SW_VERSION: 'v4.8.5'
-  COMPOSER_VERSION: '2.2.2'
+  COMPOSER_VERSION: '2.2.4'
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_ACCESSTOKEN }}
 jobs:
@@ -34,8 +34,6 @@ jobs:
             alpine-version: '3.10'
           - php-version: '8.1'
             alpine-version: '3.11'
-          - php-version: '8.1'
-            alpine-version: '3.15'
       max-parallel: 16
     steps:
       - name: Checkout code
