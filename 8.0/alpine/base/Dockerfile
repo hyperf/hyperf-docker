@@ -61,6 +61,7 @@ RUN set -ex \
     php8-xmlreader \
     php8-pcntl \
     php8-opcache \
+    php8-tokenizer \
     && ln -sf /usr/bin/php8 /usr/bin/php \
     && apk del --purge *-dev \
     && rm -rf /var/cache/apk/* /tmp/* /usr/share/man /usr/share/php8 \
