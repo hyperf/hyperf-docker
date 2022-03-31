@@ -1,7 +1,7 @@
 # Default Dockerfile
 #
 # @link     https://www.hyperf.io
-# @document https://doc.hyperf.io
+# @document https://hyperf.wiki
 # @contact  group@hyperf.io
 # @license  https://github.com/hyperf-cloud/hyperf/blob/master/LICENSE
 

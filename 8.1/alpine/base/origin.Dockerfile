@@ -1,4 +1,4 @@
-# hyperf/hyperf:8.0
+# hyperf/hyperf:8.1
 #
 # @link     https://www.hyperf.io
 # @document https://hyperf.wiki
@@ -11,18 +11,10 @@ FROM alpine:$ALPINE_VERSION
 
 LABEL maintainer="Hyperf Developers <group@hyperf.io>" version="1.0" license="MIT"
 
-ARG ALPINE_VERSION
-
-# trust this project public key to trust the packages.
-ADD https://alpine-apk-repository.knowyourself.cc/php-alpine.rsa.pub /etc/apk/keys/php-alpine.rsa.pub
-
 ##
 # ---------- building ----------
 ##
 RUN set -ex \
-    # change apk source repo
-    && echo "https://alpine-apk-repository.knowyourself.cc/v$ALPINE_VERSION/php-8.0" >> /etc/apk/repositories \
-    && echo "@php https://alpine-apk-repository.knowyourself.cc/v$ALPINE_VERSION/php-8.0" >> /etc/apk/repositories \
     && apk update \
     && apk add --no-cache \
     # Install base packages ('ca-certificates' will install 'nghttp2-libs')
@@ -31,7 +23,6 @@ RUN set -ex \
     wget \
     tar \
     xz \
-    libressl \
     tzdata \
     pcre \
     php8 \
@@ -39,6 +30,7 @@ RUN set -ex \
     php8-curl \
     php8-ctype \
     php8-dom \
+    php8-fileinfo \
     php8-gd \
     php8-iconv \
     php8-mbstring \
@@ -55,10 +47,13 @@ RUN set -ex \
     php8-sysvshm \
     php8-sysvmsg \
     php8-sysvsem \
+    php8-simplexml \
+    php8-tokenizer \
     php8-zip \
     php8-zlib \
     php8-xml \
     php8-xmlreader \
+    php8-xmlwriter \
     php8-pcntl \
     php8-opcache \
     && ln -sf /usr/bin/php8 /usr/bin/php \

@@ -4,32 +4,32 @@
 
 tag format:
 
-- 7.4: php version, support 7.3/7.4/8.0, Recommend 8.0
+- 8.0: php version, support 7.3/7.4/8.0/8.1, Recommend 8.0
 - alpine: base images, supoort alpine/ubuntu, recommend alpine
-- v3.11: alpine version, support alpine 3.10/3.11/3.12/3.13/3.14, recommend 3.14
+- v3.15: alpine version, support alpine 3.10/3.11/3.12/3.13/3.14/3.15, recommend 3.15
 - swoole: support base/dev/swoole/swow
-- v4.5.5: swoole/swow version
+- v4.8.4: swoole/swow version
 
 support:
 
-- [`7.3-alpine-v3.11-swoole-*`, `7.3-alpine-v3.11-swoole`](https://github.com/hyperf-cloud/hyperf-docker/blob/master/7.3/alpine/swoole/Dockerfile)
-- [`7.3-alpine-v3.11-swow-*`, `7.3-alpine-v3.11-swow`](https://github.com/hyperf-cloud/hyperf-docker/blob/master/7.3/alpine/swow/Dockerfile)
-- [`7.3-alpine-v3.11-base`](https://github.com/hyperf-cloud/hyperf-docker/blob/master/7.3/alpine/base/Dockerfile)
-- [`7.4-alpine-v3.14-swoole-*`, `7.4-alpine-v3.14-swoole`](https://github.com/hyperf-cloud/hyperf-docker/blob/master/7.4/alpine/swoole/Dockerfile)
-- [`7.4-alpine-v3.14-swow-*`, `7.4-alpine-v3.14-swow`](https://github.com/hyperf-cloud/hyperf-docker/blob/master/7.4/alpine/swoole/Dockerfile)
-- [`7.4-alpine-v3.14-base`](https://github.com/hyperf-cloud/hyperf-docker/blob/master/7.4/alpine/base/Dockerfile)
-- [`8.0-alpine-v3.14-swoole-*`, `8.0-alpine-v3.14-swoole`](https://github.com/hyperf-cloud/hyperf-docker/blob/master/8.0/alpine/swoole/Dockerfile)
-- [`8.0-alpine-v3.14-swow-*`, `8.0-alpine-v3.14-swow`](https://github.com/hyperf-cloud/hyperf-docker/blob/master/8.0/alpine/swoole/Dockerfile)
-- [`8.0-alpine-v3.14-base`](https://github.com/hyperf-cloud/hyperf-docker/blob/master/8.0/alpine/base/Dockerfile)
+- [`7.3-alpine-v3.11-swoole-*`, `7.3-alpine-v3.11-swoole`](https://github.com/hyperf/hyperf-docker/blob/master/7.3/alpine/swoole/Dockerfile)
+- [`7.3-alpine-v3.11-swow-*`, `7.3-alpine-v3.11-swow`](https://github.com/hyperf/hyperf-docker/blob/master/7.3/alpine/swow/Dockerfile)
+- [`7.3-alpine-v3.11-base`](https://github.com/hyperf/hyperf-docker/blob/master/7.3/alpine/base/Dockerfile)
+- [`7.4-alpine-v3.14-swoole-*`, `7.4-alpine-v3.14-swoole`](https://github.com/hyperf/hyperf-docker/blob/master/7.4/alpine/swoole/Dockerfile)
+- [`7.4-alpine-v3.14-swow-*`, `7.4-alpine-v3.14-swow`](https://github.com/hyperf/hyperf-docker/blob/master/7.4/alpine/swoole/Dockerfile)
+- [`7.4-alpine-v3.14-base`](https://github.com/hyperf/hyperf-docker/blob/master/7.4/alpine/base/Dockerfile)
+- [`8.0-alpine-v3.14-swoole-*`, `8.0-alpine-v3.14-swoole`](https://github.com/hyperf/hyperf-docker/blob/master/8.0/alpine/swoole/Dockerfile)
+- [`8.0-alpine-v3.14-swow-*`, `8.0-alpine-v3.14-swow`](https://github.com/hyperf/hyperf-docker/blob/master/8.0/alpine/swoole/Dockerfile)
+- [`8.0-alpine-v3.14-base`](https://github.com/hyperf/hyperf-docker/blob/master/8.0/alpine/base/Dockerfile)
 
 ## Quick reference
 
 - [hyperf](https://github.com/hyperf)
-- [hyperf doc](https://doc.hyperf.io)
+- [hyperf doc](https://hyperf.wiki)
 
 ## How to use this image
 
-Added [Dockerfile](https://github.com/hyperf-cloud/hyperf-docker/blob/master/Dockerfile) to your project.
+Added [Dockerfile](https://github.com/hyperf/hyperf-docker/blob/master/Dockerfile) to your project.
 
 ## Info
 
@@ -108,26 +108,7 @@ RUN apk add --no-cache librdkafka-dev \
 && echo "extension=rdkafka.so" > /etc/php7/conf.d/rdkafka.ini
 ```
 
-- aerospike
-
-```dockerfile
-# aerospike @see https://github.com/aerospike/aerospike-client-php/issues/24
-RUN git clone https://gitlab.innotechx.com/liyibocheng/aerospike-c-client.git /tmp/aerospike-client-c \
-&& ( \
-    cd /tmp/aerospike-client-c \
-    && make \
-) \
-&& export PREFIX=/tmp/aerospike-client-c/target/Linux-x86_64 \
-&& export DOWNLOAD_C_CLIENT=0 \
-&& git clone https://gitlab.innotechx.com/liyibocheng/aerospike-client-php.git /tmp/aerospike-client-php \
-&& ( \
-    cd /tmp/aerospike-client-php/src \
-    && ./build.sh \
-    && make install \
-    && echo "extension=aerospike.so" > /etc/php7/conf.d/aerospike.ini \
-    && echo "aerospike.udf.lua_user_path=/usr/local/aerospike/usr-lua" >> /etc/php7/conf.d/aerospike.ini \
-)
-```
+- aerospike: https://github.com/aerospike/aerospike-client-php/issues/24
 
 - mongodb
 
@@ -147,7 +128,7 @@ RUN apk add --no-cache protobuf \
 && echo "extension=protobuf.so" > /etc/php7/conf.d/protobuf.ini
 ```
 
--  swoole tracker
+- swoole tracker
 
 ```dockerfile
 # download swoole tracker

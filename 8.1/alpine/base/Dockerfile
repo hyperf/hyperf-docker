@@ -1,4 +1,4 @@
-# hyperf/hyperf:8.0
+# hyperf/hyperf:8.1
 #
 # @link     https://www.hyperf.io
 # @document https://hyperf.wiki
@@ -14,15 +14,15 @@ LABEL maintainer="Hyperf Developers <group@hyperf.io>" version="1.0" license="MI
 ARG ALPINE_VERSION
 
 # trust this project public key to trust the packages.
-ADD https://alpine-apk-repository.knowyourself.cc/php-alpine.rsa.pub /etc/apk/keys/php-alpine.rsa.pub
+ADD https://php.hernandev.com/key/php-alpine.rsa.pub /etc/apk/keys/php-alpine.rsa.pub
 
 ##
 # ---------- building ----------
 ##
 RUN set -ex \
     # change apk source repo
-    && echo "https://alpine-apk-repository.knowyourself.cc/v$ALPINE_VERSION/php-8.0" >> /etc/apk/repositories \
-    && echo "@php https://alpine-apk-repository.knowyourself.cc/v$ALPINE_VERSION/php-8.0" >> /etc/apk/repositories \
+    && echo "https://php.hernandev.com/v$ALPINE_VERSION/php-8.1" >> /etc/apk/repositories \
+    && echo "@php https://php.hernandev.com/v$ALPINE_VERSION/php-8.1" >> /etc/apk/repositories \
     && apk update \
     && apk add --no-cache \
     # Install base packages ('ca-certificates' will install 'nghttp2-libs')
@@ -49,7 +49,7 @@ RUN set -ex \
     php8-pdo_sqlite \
     php8-phar \
     php8-posix \
-    php8-redis \
+    php-redis=8.1 \
     php8-sockets \
     php8-sodium \
     php8-sysvshm \
