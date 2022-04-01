@@ -27,6 +27,7 @@ RUN set -ex \
     && apk add --no-cache $PHPIZE_DEPS libaio-dev openssl-dev curl-dev \
     && ln -s /usr/bin/phpize8 /usr/local/bin/phpize \
     && ln -s /usr/bin/php-config8 /usr/local/bin/php-config \
+    && ln -s /usr/bin/pecl8 /usr/local/bin/pecl \
     # install composer
     && wget -nv -O /usr/local/bin/composer https://github.com/composer/composer/releases/download/${COMPOSER_VERSION}/composer.phar \
     && chmod u+x /usr/local/bin/composer \
