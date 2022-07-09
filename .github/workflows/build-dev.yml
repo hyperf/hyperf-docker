@@ -2,7 +2,7 @@ name: Build Develop
 
 on: [ push ]
 env:
-  COMPOSER_VERSION: '2.2.9'
+  COMPOSER_VERSION: '2.3.9'
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 jobs:
   build:
