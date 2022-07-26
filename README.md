@@ -48,6 +48,7 @@ filter
 gd
 hash
 iconv
+igbinary
 json
 libxml
 mbstring

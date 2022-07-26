@@ -41,11 +41,13 @@ if [[ ${TASK} == "build" ]]; then
     export PHP_VERSION=8.0 && export ALPINE_VERSION=3.13 && docker-compose build alpine-origin-base
     export PHP_VERSION=8.0 && export ALPINE_VERSION=3.14 && docker-compose build alpine-origin-base
     export PHP_VERSION=8.0 && export ALPINE_VERSION=3.15 && docker-compose build alpine-origin-base
+    export PHP_VERSION=8.0 && export ALPINE_VERSION=3.16 && docker-compose build alpine-origin-base
 
     export PHP_VERSION=8.1 && export ALPINE_VERSION=3.12 && docker-compose build alpine-base
     export PHP_VERSION=8.1 && export ALPINE_VERSION=3.13 && docker-compose build alpine-base
     export PHP_VERSION=8.1 && export ALPINE_VERSION=3.14 && docker-compose build alpine-base
     export PHP_VERSION=8.1 && export ALPINE_VERSION=3.15 && docker-compose build alpine-base
+    export PHP_VERSION=8.1 && export ALPINE_VERSION=3.16 && docker-compose build alpine-origin-base
 fi
 
 if [[ ${TASK} == "publish" ]]; then

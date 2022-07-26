@@ -25,40 +25,40 @@ RUN set -ex \
     xz \
     tzdata \
     pcre \
-    php8 \
-    php8-bcmath \
-    php8-curl \
-    php8-ctype \
-    php8-dom \
-    php8-fileinfo \
-    php8-gd \
-    php8-iconv \
-    php8-mbstring \
-    php8-mysqlnd \
-    php8-openssl \
-    php8-pdo \
-    php8-pdo_mysql \
-    php8-pdo_sqlite \
-    php8-phar \
-    php8-posix \
-    php8-redis \
-    php8-sockets \
-    php8-sodium \
-    php8-sysvshm \
-    php8-sysvmsg \
-    php8-sysvsem \
-    php8-simplexml \
-    php8-tokenizer \
-    php8-zip \
-    php8-zlib \
-    php8-xml \
-    php8-xmlreader \
-    php8-xmlwriter \
-    php8-pcntl \
-    php8-opcache \
-    && ln -sf /usr/bin/php8 /usr/bin/php \
+    php81 \
+    php81-bcmath \
+    php81-curl \
+    php81-ctype \
+    php81-dom \
+    php81-fileinfo \
+    php81-gd \
+    php81-iconv \
+    php81-mbstring \
+    php81-mysqlnd \
+    php81-openssl \
+    php81-pdo \
+    php81-pdo_mysql \
+    php81-pdo_sqlite \
+    php81-phar \
+    php81-posix \
+    php81-redis \
+    php81-sockets \
+    php81-sodium \
+    php81-sysvshm \
+    php81-sysvmsg \
+    php81-sysvsem \
+    php81-simplexml \
+    php81-tokenizer \
+    php81-zip \
+    php81-zlib \
+    php81-xml \
+    php81-xmlreader \
+    php81-xmlwriter \
+    php81-pcntl \
+    php81-opcache \
+    && ln -sf /usr/bin/php81 /usr/bin/php \
     && apk del --purge *-dev \
-    && rm -rf /var/cache/apk/* /tmp/* /usr/share/man /usr/share/php8 \
+    && rm -rf /var/cache/apk/* /tmp/* /usr/share/man /usr/share/php81 \
     && php -v \
     && php -m \
     && echo -e "\033[42;37m Build Completed :).\033[0m\n"
