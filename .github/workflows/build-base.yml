@@ -46,7 +46,6 @@ jobs:
           echo "::set-output name=dockerfile::" . $dockerfile . PHP_EOL;
       - name: Build
         run: |
-          echo ${{ steps.fetch-dockerfile.outputs.dockerfile }}
           docker-compose build ${{ steps.fetch-dockerfile.outputs.dockerfile }}
       - name: Push Images to Docker Hub
         if: ${{ github.event.inputs.event == 'publish' }}

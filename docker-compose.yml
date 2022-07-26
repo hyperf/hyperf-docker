@@ -28,6 +28,7 @@ services:
         ALPINE_VERSION: ${ALPINE_VERSION}
         SW_VERSION: ${SW_VERSION}
         COMPOSER_VERSION: ${COMPOSER_VERSION}
+        PHP_BUILD_VERSION: ${PHP_BUILD_VERSION}
 
   # swow image
   alpine-swow:
@@ -38,6 +39,7 @@ services:
         ALPINE_VERSION: ${ALPINE_VERSION}
         SW_VERSION: ${SW_VERSION}
         COMPOSER_VERSION: ${COMPOSER_VERSION}
+        PHP_BUILD_VERSION: ${PHP_BUILD_VERSION}
 
   # dev image
   alpine-dev:
@@ -47,3 +49,4 @@ services:
       args:
         ALPINE_VERSION: ${ALPINE_VERSION}
         COMPOSER_VERSION: ${COMPOSER_VERSION}
+        PHP_BUILD_VERSION: ${PHP_BUILD_VERSION}

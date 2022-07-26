@@ -13,6 +13,7 @@ LABEL maintainer="Hyperf Developers <group@hyperf.io>" version="1.0" license="MI
 
 ARG SW_VERSION
 ARG COMPOSER_VERSION
+ARG PHP_BUILD_VERSION
 
 ##
 # ---------- env settings ----------
@@ -20,7 +21,7 @@ ARG COMPOSER_VERSION
 ENV SW_VERSION=${SW_VERSION:-"v4.6.7"} \
     COMPOSER_VERSION=${COMPOSER_VERSION:-"2.0.2"} \
     #  install and remove building packages
-    PHPIZE_DEPS="autoconf dpkg-dev dpkg file g++ gcc libc-dev make php8-dev php8-pear pkgconf re2c pcre-dev pcre2-dev zlib-dev libtool automake"
+    PHPIZE_DEPS="autoconf dpkg-dev dpkg file g++ gcc libc-dev make php${PHP_BUILD_VERSION}-dev php${PHP_BUILD_VERSION}-pear pkgconf re2c pcre-dev pcre2-dev zlib-dev libtool automake"
 
 # update
 RUN set -ex \
@@ -36,18 +37,18 @@ RUN set -ex \
     && cd /tmp \
     && mkdir -p swoole \
     && tar -xf swoole.tar.gz -C swoole --strip-components=1 \
-    && ln -s /usr/bin/phpize8 /usr/local/bin/phpize \
-    && ln -s /usr/bin/php-config8 /usr/local/bin/php-config \
+    && ln -s /usr/bin/phpize${PHP_BUILD_VERSION} /usr/local/bin/phpize \
+    && ln -s /usr/bin/php-config${PHP_BUILD_VERSION} /usr/local/bin/php-config \
     && ( \
         cd swoole \
         && phpize \
         && ./configure --enable-openssl --enable-http2 --enable-swoole-curl --enable-swoole-json \
         && make -s -j$(nproc) && make install \
     ) \
-    && echo "memory_limit=1G" > /etc/php8/conf.d/00_default.ini \
-    && echo "opcache.enable_cli = 'On'" >> /etc/php8/conf.d/00_opcache.ini \
-    && echo "extension=swoole.so" > /etc/php8/conf.d/50_swoole.ini \
-    && echo "swoole.use_shortname = 'Off'" >> /etc/php8/conf.d/50_swoole.ini \
+    && echo "memory_limit=1G" > /etc/php${PHP_BUILD_VERSION}/conf.d/00_default.ini \
+    && echo "opcache.enable_cli = 'On'" >> /etc/php${PHP_BUILD_VERSION}/conf.d/00_opcache.ini \
+    && echo "extension=swoole.so" > /etc/php${PHP_BUILD_VERSION}/conf.d/50_swoole.ini \
+    && echo "swoole.use_shortname = 'Off'" >> /etc/php${PHP_BUILD_VERSION}/conf.d/50_swoole.ini \
     # install composer
     && wget -nv -O /usr/local/bin/composer https://github.com/composer/composer/releases/download/${COMPOSER_VERSION}/composer.phar \
     && chmod u+x /usr/local/bin/composer \

@@ -14,29 +14,30 @@ jobs:
     strategy:
       matrix:
         os: [ ubuntu-latest ]
-        alpine-version: [ '3.10', '3.11', '3.12', '3.13', '3.14', '3.15' ]
-        php-version: [ '7.3', '7.4', '8.0', '8.1' ]
+        alpine-version: [ '3.12', '3.13', '3.14', '3.15', '3.16' ]
+        php-version: [ '7.4', '8.0', '8.1' ]
         exclude:
-          - php-version: '7.3'
-            alpine-version: '3.12'
-          - php-version: '7.3'
-            alpine-version: '3.13'
-          - php-version: '7.3'
-            alpine-version: '3.14'
-          - php-version: '7.3'
-            alpine-version: '3.15'
-          - php-version: '8.0'
-            alpine-version: '3.10'
-          - php-version: '8.1'
-            alpine-version: '3.10'
-          - php-version: '8.1'
-            alpine-version: '3.11'
+          - php-version: '7.4'
+            alpine-version: '3.16'
       max-parallel: 8
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+      - name: Fetch the PHP BUILD VERSION
+        id: fetch-php-build-version
+        shell: php {0}
+        run: |
+          <?php
+          $alpineVersion = getenv('ALPINE_VERSION');
+          $phpVersion = getenv('PHP_VERSION');
+          if ($phpVersion == '8.1' && in_array($alpineVersion, ['3.16'])) {
+              $version = '81';
+          } else {
+              $version = substr($phpVersion, 0, 1);
+          }
+          echo "::set-output name=version::" . $version . PHP_EOL;
       - name: Build
-        run: docker-compose build alpine-dev
+        run: export PHP_BUILD_VERSION=${{ steps.fetch-php-build-version.outputs.version }} && docker-compose build alpine-dev
       - name: Login
         run: docker login --username limingxinleo -p ${{ secrets.DOCKERHUB_ACCESSTOKEN }}
       - name: Push
