@@ -18,10 +18,10 @@ ARG PHP_BUILD_VERSION
 ##
 # ---------- env settings ----------
 ##
-ENV SW_VERSION=${SW_VERSION:-"v4.6.7"} \
-    COMPOSER_VERSION=${COMPOSER_VERSION:-"2.0.2"} \
+ENV SW_VERSION=${SW_VERSION:-"v5.0.0"} \
+    COMPOSER_VERSION=${COMPOSER_VERSION:-"2.3.10"} \
     #  install and remove building packages
-    PHPIZE_DEPS="autoconf dpkg-dev dpkg file g++ gcc libc-dev make php${PHP_BUILD_VERSION}-dev php${PHP_BUILD_VERSION}-pear pkgconf re2c pcre-dev pcre2-dev zlib-dev libtool automake"
+    PHPIZE_DEPS="autoconf dpkg-dev dpkg file g++ gcc libc-dev make php${PHP_BUILD_VERSION}-dev php${PHP_BUILD_VERSION}-pear pkgconf re2c pcre-dev pcre2-dev zlib-dev libtool automake c-ares-dev libpq-dev"
 
 # update
 RUN set -ex \
@@ -42,7 +42,7 @@ RUN set -ex \
     && ( \
         cd swoole \
         && phpize \
-        && ./configure --enable-openssl --enable-http2 --enable-swoole-curl --enable-swoole-json \
+        && ./configure --enable-openssl --enable-swoole-curl --enable-cares --enable-swoole-pgsql \
         && make -s -j$(nproc) && make install \
     ) \
     && echo "memory_limit=1G" > /etc/php${PHP_BUILD_VERSION}/conf.d/00_default.ini \

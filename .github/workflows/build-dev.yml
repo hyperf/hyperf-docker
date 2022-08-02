@@ -20,6 +20,7 @@ jobs:
           - php-version: '7.4'
             alpine-version: '3.16'
       max-parallel: 8
+      fail-fast: false
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
