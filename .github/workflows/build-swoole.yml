@@ -3,7 +3,7 @@ name: Build Swoole
 on: [ push ]
 env:
   ENGINE: 'swoole'
-  SW_VERSION: 'v4.8.11'
+  SW_VERSION: 'v5.0.0'
   COMPOSER_VERSION: '2.3.10'
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_ACCESSTOKEN }}
@@ -18,10 +18,7 @@ jobs:
       matrix:
         os: [ ubuntu-latest ]
         alpine-version: [ '3.12', '3.13', '3.14', '3.15', '3.16' ]
-        php-version: [ '7.4', '8.0', '8.1' ]
-        exclude:
-          - php-version: '7.4'
-            alpine-version: '3.16'
+        php-version: [ '8.0', '8.1' ]
       max-parallel: 16
     steps:
       - name: Checkout code
