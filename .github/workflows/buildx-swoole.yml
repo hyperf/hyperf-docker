@@ -10,6 +10,7 @@ on:
 
 env:
   DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_ACCESSTOKEN }}
+  SW_VERSION: 4.6.4
 
 jobs:
   build:
@@ -20,7 +21,7 @@ jobs:
       ALPINE_VERSION: '${{ matrix.alpine-version }}'
     strategy:
       matrix:
-        php-version: [ '7.4', ]
+        php-version: [ '7.4' ]
         alpine-version: [ '3.13']
         exclude:
           - php-version: '7.4'
@@ -30,22 +31,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Fetch the Dockerfile
-        id: fetch-dockerfile
-        shell: php {0}
-        run: |
-          <?php
-          $alpineVersion = getenv('ALPINE_VERSION');
-          $phpVersion = getenv('PHP_VERSION');
-          if ($phpVersion == '8.1' && in_array($alpineVersion, ['3.13', '3.14', '3.15'])) {
-              $dockerfile = 'alpine-base';
-          } else {
-              $dockerfile = 'alpine-origin-base';
-          }
-          echo "::set-output name=dockerfile::" . $dockerfile . PHP_EOL;
       - name: Build
         run: |
-          docker-compose build ${{ steps.fetch-dockerfile.outputs.dockerfile }}
+          docker buildx build -t hyperf/hyperf:${{ matrix.php-version }}-alpine-v${{ matrix.alpine-version }}-base --platform=linux/arm,linux/arm64,linux/amd64 -f ./7.4/alpine/base/Dockerfile
+          docker buildx build -t hyperf/hyperf:${{ matrix.php-version }}-alpine-v${{ matrix.alpine-version }}-swoole-$SW_VERSION --platform=linux/arm,linux/arm64,linux/amd64 -f ./7.4/alpine/swoole/Dockerfile
       # - name: Push Images to Docker Hub
       #   if: ${{ github.event.inputs.event == 'publish' }}
       #   run: |
