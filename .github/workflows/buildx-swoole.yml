@@ -1,0 +1,56 @@
+name: Buildx Base Image
+
+on:
+  push:
+  workflow_dispatch:
+    inputs:
+      event:
+        description: 'Input your event'
+        required: true
+        default: ''
+
+env:
+  DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_ACCESSTOKEN }}
+
+jobs:
+  build:
+    name: Build Base Image
+    runs-on: 'ubuntu-latest'
+    env:
+      PHP_VERSION: '${{ matrix.php-version }}'
+      ALPINE_VERSION: '${{ matrix.alpine-version }}'
+    strategy:
+      matrix:
+        php-version: [ '7.4', ]
+        alpine-version: [ '3.13']
+        exclude:
+          - php-version: '7.4'
+            alpine-version: '3.16'
+      max-parallel: 12
+      fail-fast: false
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Fetch the Dockerfile
+        id: fetch-dockerfile
+        shell: php {0}
+        run: |
+          <?php
+          $alpineVersion = getenv('ALPINE_VERSION');
+          $phpVersion = getenv('PHP_VERSION');
+          if ($phpVersion == '8.1' && in_array($alpineVersion, ['3.13', '3.14', '3.15'])) {
+              $dockerfile = 'alpine-base';
+          } else {
+              $dockerfile = 'alpine-origin-base';
+          }
+          echo "::set-output name=dockerfile::" . $dockerfile . PHP_EOL;
+      - name: Build
+        run: |
+          docker-compose build ${{ steps.fetch-dockerfile.outputs.dockerfile }}
+      # - name: Push Images to Docker Hub
+      #   if: ${{ github.event.inputs.event == 'publish' }}
+      #   run: |
+      #     docker login --username limingxinleo -p $DOCKERHUB_TOKEN
+      #     docker push hyperf/hyperf:${{ matrix.php-version }}-alpine-v${{ matrix.alpine-version }}-base
+
+
