@@ -1,7 +1,6 @@
 name: Buildx Base Image
 
 on:
-  push:
   workflow_dispatch:
     inputs:
       event:
