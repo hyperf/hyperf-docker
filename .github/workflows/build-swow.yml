@@ -1,6 +1,5 @@
 name: Build Swow
 
-on: [ push ]
 env:
   ENGINE: 'swow'
   SW_VERSION: 'v0.1.0-nightly20220722'

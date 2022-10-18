@@ -1,6 +1,5 @@
 name: Build Develop
 
-on: [ push ]
 env:
   COMPOSER_VERSION: '2.3.10'
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
