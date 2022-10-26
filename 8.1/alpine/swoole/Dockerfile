@@ -42,7 +42,7 @@ RUN set -ex \
     && ( \
         cd swoole \
         && phpize \
-        && ./configure --enable-openssl --enable-swoole-curl --enable-cares --enable-swoole-pgsql \
+        && ./configure --enable-sockets --enable-openssl --enable-swoole-curl --enable-cares --enable-swoole-pgsql \
         && make -s -j$(nproc) && make install \
     ) \
     && echo "memory_limit=1G" > /etc/php${PHP_BUILD_VERSION}/conf.d/00_default.ini \
