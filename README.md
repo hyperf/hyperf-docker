@@ -16,10 +16,10 @@ support:
 - [`7.3-alpine-v3.11-swow-*`, `7.3-alpine-v3.11-swow`](https://github.com/hyperf/hyperf-docker/blob/master/7.3/alpine/swow/Dockerfile)
 - [`7.3-alpine-v3.11-base`](https://github.com/hyperf/hyperf-docker/blob/master/7.3/alpine/base/Dockerfile)
 - [`7.4-alpine-v3.14-swoole-*`, `7.4-alpine-v3.14-swoole`](https://github.com/hyperf/hyperf-docker/blob/master/7.4/alpine/swoole/Dockerfile)
-- [`7.4-alpine-v3.14-swow-*`, `7.4-alpine-v3.14-swow`](https://github.com/hyperf/hyperf-docker/blob/master/7.4/alpine/swoole/Dockerfile)
+- [`7.4-alpine-v3.14-swow-*`, `7.4-alpine-v3.14-swow`](https://github.com/hyperf/hyperf-docker/blob/master/7.4/alpine/swow/Dockerfile)
 - [`7.4-alpine-v3.14-base`](https://github.com/hyperf/hyperf-docker/blob/master/7.4/alpine/base/Dockerfile)
 - [`8.0-alpine-v3.14-swoole-*`, `8.0-alpine-v3.14-swoole`](https://github.com/hyperf/hyperf-docker/blob/master/8.0/alpine/swoole/Dockerfile)
-- [`8.0-alpine-v3.14-swow-*`, `8.0-alpine-v3.14-swow`](https://github.com/hyperf/hyperf-docker/blob/master/8.0/alpine/swoole/Dockerfile)
+- [`8.0-alpine-v3.14-swow-*`, `8.0-alpine-v3.14-swow`](https://github.com/hyperf/hyperf-docker/blob/master/8.0/alpine/swow/Dockerfile)
 - [`8.0-alpine-v3.14-base`](https://github.com/hyperf/hyperf-docker/blob/master/8.0/alpine/base/Dockerfile)
 
 ## Quick reference
