@@ -21,36 +21,33 @@ jobs:
       ALPINE_VERSION: '${{ matrix.alpine-version }}'
     strategy:
       matrix:
-        php-version: [ '7.4', '8.0', '8.1' ]
-        alpine-version: [ '3.13', '3.14', '3.15', '3.16', '3.17' ]
+        php-version: [ '8.0', '8.1', '8.2' ]
+        alpine-version: [ '3.14', '3.15', '3.16', '3.17', 'edge' ]
         exclude:
-          - php-version: '7.4'
+          - php-version: '8.2'
+            alpine-version: '3.14'
+          - php-version: '8.2'
+            alpine-version: '3.15'
+          - php-version: '8.2'
             alpine-version: '3.16'
-          - php-version: '7.4'
+          - php-version: '8.2'
             alpine-version: '3.17'
+          - php-version: '8.1'
+            alpine-version: '3.14'
+          - php-version: '8.1'
+            alpine-version: '3.15'
           - php-version: '8.0'
             alpine-version: '3.17'
+          - php-version: '8.0'
+            alpine-version: 'edge'
       max-parallel: 12
       fail-fast: false
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      - name: Fetch the Dockerfile
-        id: fetch-dockerfile
-        shell: php {0}
-        run: |
-          <?php
-          $alpineVersion = getenv('ALPINE_VERSION');
-          $phpVersion = getenv('PHP_VERSION');
-          if ($phpVersion == '8.1' && in_array($alpineVersion, ['3.13', '3.14', '3.15'])) {
-              $dockerfile = 'alpine-base';
-          } else {
-              $dockerfile = 'alpine-origin-base';
-          }
-          echo "::set-output name=dockerfile::" . $dockerfile . PHP_EOL;
       - name: Build
         run: |
-          docker-compose build ${{ steps.fetch-dockerfile.outputs.dockerfile }}
+          docker-compose build alpine-base
       - name: Push Images to Docker Hub
         if: ${{ github.event.inputs.event == 'publish' }}
         run: |

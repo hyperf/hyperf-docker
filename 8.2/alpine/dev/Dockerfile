@@ -1,4 +1,4 @@
-# hyperf/hyperf:7.3
+# hyperf/hyperf:8.2
 #
 # @link     https://www.hyperf.io
 # @document https://hyperf.wiki
@@ -7,26 +7,28 @@
 
 ARG ALPINE_VERSION
 
-FROM hyperf/hyperf:7.3-alpine-v${ALPINE_VERSION}-base
+FROM hyperf/hyperf:8.2-alpine-v${ALPINE_VERSION}-base
 
 LABEL maintainer="Hyperf Developers <group@hyperf.io>" version="1.0" license="MIT"
 
 ARG COMPOSER_VERSION
+ARG PHP_BUILD_VERSION
 
 ENV COMPOSER_VERSION=${COMPOSER_VERSION:-"2.0.2"}
 
 ##
 # ---------- env settings ----------
 ##
-ENV PHPIZE_DEPS="autoconf dpkg-dev dpkg file g++ gcc libc-dev make php7-dev php7-pear pkgconf re2c pcre-dev pcre2-dev zlib-dev libtool automake"
+ENV PHPIZE_DEPS="autoconf dpkg-dev dpkg file g++ gcc libc-dev make php${PHP_BUILD_VERSION}-dev php${PHP_BUILD_VERSION}-pear pkgconf re2c pcre-dev pcre2-dev zlib-dev libtool automake"
 
 # update
 RUN set -ex \
     && apk update \
     && apk add --no-cache libstdc++ openssl git bash \
     && apk add --no-cache $PHPIZE_DEPS libaio-dev openssl-dev curl-dev \
-    && ln -s /usr/bin/phpize7 /usr/local/bin/phpize \
-    && ln -s /usr/bin/php-config7 /usr/local/bin/php-config \
+    && ln -s /usr/bin/phpize${PHP_BUILD_VERSION} /usr/local/bin/phpize \
+    && ln -s /usr/bin/php-config${PHP_BUILD_VERSION} /usr/local/bin/php-config \
+    && ln -s /usr/bin/pecl${PHP_BUILD_VERSION} /usr/local/bin/pecl \
     # install composer
     && wget -nv -O /usr/local/bin/composer https://github.com/composer/composer/releases/download/${COMPOSER_VERSION}/composer.phar \
     && chmod u+x /usr/local/bin/composer \
