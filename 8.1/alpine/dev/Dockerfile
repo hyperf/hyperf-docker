@@ -14,7 +14,8 @@ LABEL maintainer="Hyperf Developers <group@hyperf.io>" version="1.0" license="MI
 ARG COMPOSER_VERSION
 ARG PHP_BUILD_VERSION
 
-ENV COMPOSER_VERSION=${COMPOSER_VERSION:-"2.0.2"}
+ENV COMPOSER_VERSION=${COMPOSER_VERSION:-"2.0.2"} \
+    COMPOSER_ALLOW_SUPERUSER=1
 
 ##
 # ---------- env settings ----------

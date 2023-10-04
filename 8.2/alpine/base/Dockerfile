@@ -14,6 +14,8 @@ LABEL maintainer="Hyperf Developers <group@hyperf.io>" version="1.0" license="MI
 ##
 # ---------- building ----------
 ##
+COPY ./init.php /init.php
+
 RUN set -ex \
     && apk update \
     && apk add --no-cache \
@@ -57,6 +59,7 @@ RUN set -ex \
     php82-pcntl \
     php82-opcache \
     && ln -sf /usr/bin/php82 /usr/bin/php \
+    && php /init.php \
     && apk del --purge *-dev \
     && rm -rf /var/cache/apk/* /tmp/* /usr/share/man /usr/share/php82 \
     && php -v \

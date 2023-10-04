@@ -19,6 +19,7 @@ ARG COMPOSER_VERSION
 ##
 ENV SW_VERSION=${SW_VERSION:-"develop"} \
     COMPOSER_VERSION=${COMPOSER_VERSION:-"2.0.2"} \
+    COMPOSER_ALLOW_SUPERUSER=1 \
     #  install and remove building packages
     PHPIZE_DEPS="autoconf automake gcc g++ make php8-dev php8-pear file re2c openssl-dev curl-dev"
 

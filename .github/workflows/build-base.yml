@@ -50,6 +50,7 @@ jobs:
       - name: Build
         run: |
           docker-compose build alpine-base
+          docker run --entrypoint php -v $PWD/tests/base:/opt/www hyperf/hyperf:${{ matrix.php-version }}-alpine-v${{ matrix.alpine-version }}-base /opt/www/openssl.php
       - name: Push Images to Docker Hub
         if: ${{ github.event.inputs.event == 'publish' }}
         run: |

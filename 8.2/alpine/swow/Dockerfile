@@ -20,6 +20,7 @@ ARG PHP_BUILD_VERSION
 ##
 ENV SW_VERSION=${SW_VERSION:-"develop"} \
     COMPOSER_VERSION=${COMPOSER_VERSION:-"2.0.2"} \
+    COMPOSER_ALLOW_SUPERUSER=1 \
     #  install and remove building packages
     PHPIZE_DEPS="autoconf automake gcc g++ make php${PHP_BUILD_VERSION}-dev php${PHP_BUILD_VERSION}-pear file re2c openssl-dev curl-dev"
 
