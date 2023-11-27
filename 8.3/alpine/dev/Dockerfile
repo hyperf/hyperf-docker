@@ -1,4 +1,4 @@
-# hyperf/hyperf:8.2
+# hyperf/hyperf:8.3
 #
 # @link     https://www.hyperf.io
 # @document https://hyperf.wiki
@@ -7,7 +7,7 @@
 
 ARG ALPINE_VERSION
 
-FROM hyperf/hyperf:8.2-alpine-v${ALPINE_VERSION}-base
+FROM hyperf/hyperf:8.3-alpine-v${ALPINE_VERSION}-base
 
 LABEL maintainer="Hyperf Developers <group@hyperf.io>" version="1.0" license="MIT"
 
