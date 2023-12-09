@@ -19,7 +19,7 @@ ENV COMPOSER_VERSION=${COMPOSER_VERSION:-"2.0.2"} \
 ##
 # ---------- env settings ----------
 ##
-ENV PHPIZE_DEPS="autoconf dpkg-dev dpkg file g++ gcc libc-dev make php8-dev php8-pear pkgconf re2c pcre-dev pcre2-dev zlib-dev libtool automake"
+ENV PHPIZE_DEPS="autoconf dpkg-dev dpkg file g++ gcc libc-dev make php8-dev php8-pear pkgconf re2c pcre-dev pcre2-dev zlib-dev libtool automake php8-xdebug"
 
 # update
 RUN set -ex \
