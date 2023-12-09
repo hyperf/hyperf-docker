@@ -33,6 +33,10 @@ RUN set -ex \
     # install composer
     && wget -nv -O /usr/local/bin/composer https://github.com/composer/composer/releases/download/${COMPOSER_VERSION}/composer.phar \
     && chmod u+x /usr/local/bin/composer \
+    # php extension: xdebug
+    && echo "zend_extension=xdebug.so" > /etc/php8/conf.d/00_xdebug.ini \
+    && echo "xdebug.remote_enable=1" >> /etc/php8/conf.d/00_xdebug.ini \
+    && echo "xdebug.remote_autostart=1" >> /etc/php8/conf.d/00_xdebug.ini \
     # php info
     && php -v \
     && php -m \

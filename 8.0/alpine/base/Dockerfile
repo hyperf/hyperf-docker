@@ -51,6 +51,7 @@ RUN set -ex \
     php8-tokenizer \
     php8-zip \
     php8-zlib \
+    php8-xdebug \
     php8-xml \
     php8-xmlreader \
     php8-xmlwriter \

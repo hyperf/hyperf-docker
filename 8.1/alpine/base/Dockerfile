@@ -53,6 +53,7 @@ RUN set -ex \
     php81-tokenizer \
     php81-zip \
     php81-zlib \
+    php81-xdebug \
     php81-xml \
     php81-xmlreader \
     php81-xmlwriter \
