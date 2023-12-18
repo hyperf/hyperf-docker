@@ -55,7 +55,6 @@ pcntl
 pcre
 PDO
 pdo_mysql
-pdo_sqlite
 Phar
 posix
 readline
@@ -80,6 +79,45 @@ zlib
 
 [Zend Modules]
 Zend OPcache
+```
+
+The Swoole info like the code below:
+
+```shell
+swoole
+
+Swoole => enabled
+Author => Swoole Team <team@swoole.com>
+Version => 5.1.1
+Built => Dec 11 2023 01:47:26
+coroutine => enabled with boost asm context
+epoll => enabled
+eventfd => enabled
+signalfd => enabled
+spinlock => enabled
+rwlock => enabled
+openssl => OpenSSL 3.1.4 24 Oct 2023
+dtls => enabled
+http2 => enabled
+json => enabled
+curl-native => enabled
+pcre => enabled
+c-ares => 1.19.1
+zlib => 1.2.13
+brotli => E16777225/D16777225
+mutex_timedlock => enabled
+pthread_barrier => enabled
+async_redis => enabled
+coroutine_pgsql => enabled
+
+Directive => Local Value => Master Value
+swoole.enable_coroutine => On => On
+swoole.enable_library => On => On
+swoole.enable_fiber_mock => Off => Off
+swoole.enable_preemptive_scheduler => Off => Off
+swoole.display_errors => On => On
+swoole.use_shortname => Off => Off
+swoole.unixsock_buffer_size => 8388608 => 8388608
 ```
 
 ## more demo

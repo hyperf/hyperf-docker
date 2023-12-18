@@ -40,7 +40,6 @@ RUN set -ex \
     php83-openssl \
     php83-pdo \
     php83-pdo_mysql \
-    php83-pdo_sqlite \
     php83-phar \
     php83-posix \
     php83-redis \

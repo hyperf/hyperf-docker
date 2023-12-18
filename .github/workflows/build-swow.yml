@@ -3,8 +3,8 @@ name: Build Swow
 on: [ push ]
 env:
   ENGINE: 'swow'
-  SW_VERSION: 'v1.3.1'
-  COMPOSER_VERSION: '2.6.5'
+  SW_VERSION: 'v1.4.1'
+  COMPOSER_VERSION: '2.6.6'
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_ACCESSTOKEN }}
 jobs:
