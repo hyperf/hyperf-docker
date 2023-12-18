@@ -9,16 +9,18 @@ env:
   DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_ACCESSTOKEN }}
 jobs:
   build:
-    name: Build PHP ${{ matrix.php-version }} Alpine ${{ matrix.alpine-version }}
+    name: Build PHP ${{ matrix.php-version }} Alpine ${{ matrix.alpine-version }} ${{ matrix.spec }}
     runs-on: '${{ matrix.os }}'
     env:
       ALPINE_VERSION: '${{ matrix.alpine-version }}'
       PHP_VERSION: '${{ matrix.php-version }}'
+      SPEC: '${{ matrix.spec }}'
     strategy:
       matrix:
         os: [ ubuntu-latest ]
+        spec: [ "" ]
         php-version: [ '8.1', '8.2', '8.3' ]
-        alpine-version: [ '3.16', '3.17', '3.18', 'edge' ]
+        alpine-version: [ '3.16', '3.17', '3.18', '3.19', 'edge' ]
         exclude:
           - php-version: '8.3'
             alpine-version: '3.16'

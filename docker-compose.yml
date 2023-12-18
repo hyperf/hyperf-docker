@@ -13,9 +13,10 @@ services:
 
   # swoole image
   alpine-swoole:
-    image: "hyperf/hyperf:${PHP_VERSION}-alpine-v${ALPINE_VERSION}-swoole-${SW_VERSION}"
+    image: "hyperf/hyperf:${PHP_VERSION}-alpine-v${ALPINE_VERSION}-swoole${SPEC}-${SW_VERSION}"
     build:
       context: "${PHP_VERSION}/alpine/swoole"
+      dockerfile: "Dockerfile${SPEC}"
       args:
         ALPINE_VERSION: ${ALPINE_VERSION}
         SW_VERSION: ${SW_VERSION}
@@ -24,7 +25,7 @@ services:
 
   # swow image
   alpine-swow:
-    image: "hyperf/hyperf:${PHP_VERSION}-alpine-v${ALPINE_VERSION}-swow-${SW_VERSION}"
+    image: "hyperf/hyperf:${PHP_VERSION}-alpine-v${ALPINE_VERSION}-swow${SPEC}-${SW_VERSION}"
     build:
       context: "${PHP_VERSION}/alpine/swow"
       args:
