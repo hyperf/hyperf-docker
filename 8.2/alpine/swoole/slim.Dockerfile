@@ -1,4 +1,4 @@
-# hyperf/hyperf:8.3
+# hyperf/hyperf:8.2
 #
 # @link     https://www.hyperf.io
 # @document https://hyperf.wiki
@@ -7,7 +7,7 @@
 
 ARG ALPINE_VERSION
 
-FROM hyperf/hyperf:8.3-alpine-v${ALPINE_VERSION}-base
+FROM hyperf/hyperf:8.2-alpine-v${ALPINE_VERSION}-base
 
 LABEL maintainer="Hyperf Developers <group@hyperf.io>" version="1.0" license="MIT"
 
@@ -28,8 +28,8 @@ ENV SW_VERSION=${SW_VERSION:-"v5.1.1"} \
 RUN set -ex \
     && apk update \
     # for swoole extension libaio linux-headers
-    && apk add --no-cache libstdc++ openssl git bash c-ares-dev libpq-dev php83-pdo_sqlite php83-pdo_odbc \
-    && apk add --no-cache --virtual .build-deps $PHPIZE_DEPS unixodbc-dev sqlite-dev \
+    && apk add --no-cache libstdc++ openssl git bash \
+    && apk add --no-cache --virtual .build-deps $PHPIZE_DEPS \
     # download
     && cd /tmp \
     && curl -SL "https://github.com/swoole/swoole-src/archive/${SW_VERSION}.tar.gz" -o swoole.tar.gz \
@@ -43,7 +43,7 @@ RUN set -ex \
     && ( \
         cd swoole \
         && phpize \
-        && ./configure --enable-openssl --enable-swoole-curl --enable-cares --enable-swoole-pgsql --enable-swoole-sqlite --with-swoole-odbc=unixodbc,/usr \
+        && ./configure --enable-openssl --enable-swoole-curl \
         && make -s -j$(nproc) && make install \
     ) \
     && echo "memory_limit=1G" > /etc/php${PHP_BUILD_VERSION}/conf.d/00_default.ini \

@@ -28,8 +28,8 @@ ENV SW_VERSION=${SW_VERSION:-"v5.1.1"} \
 RUN set -ex \
     && apk update \
     # for swoole extension libaio linux-headers
-    && apk add --no-cache libstdc++ openssl git bash c-ares-dev libpq-dev \
-    && apk add --no-cache --virtual .build-deps $PHPIZE_DEPS \
+    && apk add --no-cache libstdc++ openssl git bash c-ares-dev libpq-dev php81-pdo_sqlite php81-pdo_odbc \
+    && apk add --no-cache --virtual .build-deps $PHPIZE_DEPS unixodbc-dev sqlite-dev \
     # download
     && cd /tmp \
     && curl -SL "https://github.com/swoole/swoole-src/archive/${SW_VERSION}.tar.gz" -o swoole.tar.gz \
@@ -43,7 +43,7 @@ RUN set -ex \
     && ( \
         cd swoole \
         && phpize \
-        && ./configure --enable-openssl --enable-swoole-curl --enable-cares --enable-swoole-pgsql \
+        && ./configure --enable-openssl --enable-swoole-curl --enable-cares --enable-swoole-pgsql --enable-swoole-sqlite --with-swoole-odbc=unixodbc,/usr \
         && make -s -j$(nproc) && make install \
     ) \
     && echo "memory_limit=1G" > /etc/php${PHP_BUILD_VERSION}/conf.d/00_default.ini \
