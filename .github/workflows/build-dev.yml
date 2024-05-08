@@ -2,7 +2,7 @@ name: Build Develop
 
 on: [ push ]
 env:
-  COMPOSER_VERSION: '2.7.1'
+  COMPOSER_VERSION: '2.7.6'
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 jobs:
   build:
@@ -27,6 +27,8 @@ jobs:
             alpine-version: '3.16'
           - php-version: '8.2'
             alpine-version: '3.17'
+          - php-version: '8.1'
+            alpine-version: 'edge'
       max-parallel: 8
       fail-fast: false
     steps:

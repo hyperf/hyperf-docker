@@ -3,8 +3,8 @@ name: Build Swow
 on: [ push ]
 env:
   ENGINE: 'swow'
-  SW_VERSION: 'v1.4.1'
-  COMPOSER_VERSION: '2.7.1'
+  SW_VERSION: 'v1.5.0'
+  COMPOSER_VERSION: '2.7.6'
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_ACCESSTOKEN }}
 jobs:
@@ -32,6 +32,8 @@ jobs:
             alpine-version: '3.16'
           - php-version: '8.2'
             alpine-version: '3.17'
+          - php-version: '8.1'
+            alpine-version: 'edge'
       max-parallel: 8
       fail-fast: false
     steps:
