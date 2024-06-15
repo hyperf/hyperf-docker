@@ -3,10 +3,11 @@ name: Build Swoole
 on: [ push ]
 env:
   ENGINE: 'swoole'
-  SW_VERSION: 'v5.1.2'
-  COMPOSER_VERSION: '2.7.6'
+  SW_VERSION: 'v5.1.3'
+  COMPOSER_VERSION: '2.7.7'
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_ACCESSTOKEN }}
+  CODING_PASSWORD: ${{ secrets.CODING_PASSWORD }}
 jobs:
   build:
     name: Build PHP ${{ matrix.php-version }} Alpine ${{ matrix.alpine-version }} ${{ matrix.spec }}
@@ -59,8 +60,9 @@ jobs:
         if: ${{ github.ref == 'refs/heads/build' }}
         run: ./.github/workflows/push.sh
       - name: Push the latest images
-        if: ${{ github.ref == 'refs/heads/build' && matrix.php-version == '8.2' && matrix.alpine-version == '3.18' && matrix.spec == '' }}
+        if: ${{ github.ref == 'refs/heads/build' && matrix.php-version == '8.3' && matrix.alpine-version == '3.19' && matrix.spec == '' }}
         run: |
           docker push hyperf/hyperf:latest
           docker push ghcr.io/hyperf/hyperf-docker/hyperf:latest
+          docker push hyperf-cloud-docker.pkg.coding.net/hyperf/hyperf/hyperf:latest
           

@@ -3,10 +3,11 @@ name: Build Swow
 on: [ push ]
 env:
   ENGINE: 'swow'
-  SW_VERSION: 'v1.5.0'
-  COMPOSER_VERSION: '2.7.6'
+  SW_VERSION: 'v1.5.2'
+  COMPOSER_VERSION: '2.7.7'
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_ACCESSTOKEN }}
+  CODING_PASSWORD: ${{ secrets.CODING_PASSWORD }}
 jobs:
   build:
     name: Build PHP ${{ matrix.php-version }} Alpine ${{ matrix.alpine-version }} ${{ matrix.spec }}
