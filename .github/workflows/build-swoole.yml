@@ -80,7 +80,7 @@ jobs:
         with:
           context: ${{ matrix.php-version }}/alpine/swoole
           load: true
-          tags: hyperf/hyperf:${{ matrix.php-version }}-alpine-v${{ matrix.alpine-version }}-swoole
+          tags: hyperf/hyperf:${{ matrix.php-version }}-alpine-v${{ matrix.alpine-version }}-swoole${{ env.SPEC }}
           file: ${{ matrix.php-version }}/alpine/swoole/Dockerfile${{ env.SPEC }}
           build-args: |
             "ALPINE_VERSION=${{ matrix.alpine-version }}"
@@ -89,8 +89,8 @@ jobs:
             "SW_VERSION=${{ env.SW_VERSION }}"
       - name: Check
         run: |
-          docker run --entrypoint php hyperf/hyperf:${{ matrix.php-version }}-alpine-v${{ matrix.alpine-version }}-swoole -v
-          docker run --entrypoint php hyperf/hyperf:${{ matrix.php-version }}-alpine-v${{ matrix.alpine-version }}-swoole --ri swoole
+          docker run --entrypoint php hyperf/hyperf:${{ matrix.php-version }}-alpine-v${{ matrix.alpine-version }}-swoole${{ env.SPEC }} -v
+          docker run --entrypoint php hyperf/hyperf:${{ matrix.php-version }}-alpine-v${{ matrix.alpine-version }}-swoole${{ env.SPEC }} --ri swoole
       - name: Push
         if: ${{ github.ref == 'refs/heads/build' }}
         uses: docker/build-push-action@v5
