@@ -19,7 +19,7 @@ jobs:
     strategy:
       matrix:
         php-version: [ '8.1', '8.2', '8.3' ]
-        alpine-version: [ '3.16', '3.17', '3.18', '3.19', 'edge' ]
+        alpine-version: [ '3.16', '3.17', '3.18', '3.19', '3.20', 'edge' ]
         exclude:
           - php-version: '8.3'
             alpine-version: '3.16'
@@ -31,6 +31,8 @@ jobs:
             alpine-version: '3.16'
           - php-version: '8.2'
             alpine-version: '3.17'
+          - php-version: '8.1'
+            alpine-version: '3.20'
           - php-version: '8.1'
             alpine-version: 'edge'
       max-parallel: 12
