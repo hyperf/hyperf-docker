@@ -34,6 +34,7 @@ RUN set -ex \
     php81-dom \
     php81-fileinfo \
     php81-gd \
+    php81-gmp \
     php81-iconv \
     php81-mbstring \
     php81-mysqlnd \
