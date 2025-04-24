@@ -4,7 +4,7 @@ on: [ push ]
 env:
   ENGINE: 'swow'
   SW_VERSION: 'v1.5.3'
-  COMPOSER_VERSION: '2.8.4'
+  COMPOSER_VERSION: '2.8.8'
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_ACCESSTOKEN }}
   CODING_PASSWORD: ${{ secrets.CODING_PASSWORD }}
