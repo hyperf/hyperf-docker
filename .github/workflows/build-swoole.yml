@@ -21,7 +21,7 @@ jobs:
         os: [ ubuntu-latest ]
         spec: [ "", "-slim" ]
         php-version: [ '8.1', '8.2', '8.3', '8.4' ]
-        alpine-version: [ '3.16', '3.17', '3.18', '3.19', '3.20', '3.21', 'edge' ]
+        alpine-version: [ '3.16', '3.17', '3.18', '3.19', '3.20', '3.21', '3.22', 'edge' ]
         exclude:
           - php-version: '8.4'
             alpine-version: '3.16'
@@ -47,6 +47,8 @@ jobs:
             alpine-version: '3.20'
           - php-version: '8.1'
             alpine-version: '3.21'
+          - php-version: '8.1'
+            alpine-version: '3.22'
           - php-version: '8.1'
             alpine-version: 'edge'
       max-parallel: 16
