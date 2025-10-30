@@ -8,6 +8,7 @@ env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_ACCESSTOKEN }}
   CODING_PASSWORD: ${{ secrets.CODING_PASSWORD }}
+  CNB_TOKEN: ${{ secrets.CNB_TOKEN }}
 jobs:
   build:
     name: Build PHP ${{ matrix.php-version }} Alpine ${{ matrix.alpine-version }} ${{ matrix.spec }}
