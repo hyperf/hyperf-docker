@@ -21,38 +21,16 @@ jobs:
       matrix:
         os: [ ubuntu-latest ]
         spec: [ "", "-slim" ]
-        php-version: [ '8.1', '8.2', '8.3', '8.4' ]
-        alpine-version: [ '3.16', '3.17', '3.18', '3.19', '3.20', '3.21', '3.22', 'edge' ]
+        php-version: [ '8.2', '8.3', '8.4' ]
+        alpine-version: [ '3.19', '3.20', '3.21', '3.22', '3.23', 'edge' ]
         exclude:
-          - php-version: '8.4'
-            alpine-version: '3.16'
-          - php-version: '8.4'
-            alpine-version: '3.17'
-          - php-version: '8.4'
-            alpine-version: '3.18'
           - php-version: '8.4'
             alpine-version: '3.19'
           - php-version: '8.4'
             alpine-version: '3.20'
-          - php-version: '8.3'
-            alpine-version: '3.16'
-          - php-version: '8.3'
-            alpine-version: '3.17'
-          - php-version: '8.3'
-            alpine-version: '3.18'
           - php-version: '8.2'
-            alpine-version: '3.16'
+            alpine-version: '3.23'
           - php-version: '8.2'
-            alpine-version: '3.17'
-          - php-version: '8.2'
-            alpine-version: 'edge'
-          - php-version: '8.1'
-            alpine-version: '3.20'
-          - php-version: '8.1'
-            alpine-version: '3.21'
-          - php-version: '8.1'
-            alpine-version: '3.22'
-          - php-version: '8.1'
             alpine-version: 'edge'
       max-parallel: 16
       fail-fast: false
