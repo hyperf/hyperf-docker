@@ -107,6 +107,7 @@ RUN set -ex \
         --with-freetype \
         --with-jpeg \
         --with-webp \
+        --enable-embed=shared \
     && make -s -j$(nproc) \
     && make install \
     # ---------- 初始化 php 配置 ----------
