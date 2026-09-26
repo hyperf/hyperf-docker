@@ -100,7 +100,6 @@ jobs:
       - name: Push Images to Other Hubs
         if: ${{ github.ref == 'refs/heads/build' }}
         run: ./.github/workflows/push.sh
-
   build-ubuntu:
     name: Build PHP ${{ matrix.php-version }} Ubuntu ${{ matrix.ubuntu-version }} ${{ matrix.spec }}
     runs-on: '${{ matrix.os }}'
