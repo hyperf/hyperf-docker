@@ -145,12 +145,12 @@ jobs:
           context: ${{ matrix.php-version }}/ubuntu/base
           file: ${{ matrix.php-version }}/ubuntu/base/zts.Dockerfile
           load: true
-          tags: hyperf/hyperf:${{ matrix.php-version }}-ubuntu-v${{ matrix.ubuntu-version }}-zts-base
+          tags: hyperf/hyperf:${{ matrix.php-version }}-zts-ubuntu-v${{ matrix.ubuntu-version }}-base
           build-args: |
             "UBUNTU_VERSION=${{ matrix.ubuntu-version }}"
       - name: Check
         run: |
-          docker run --entrypoint php -v $PWD/tests/base:/opt/www hyperf/hyperf:${{ matrix.php-version }}-ubuntu-v${{ matrix.ubuntu-version }}-zts-base /opt/www/openssl.php
+          docker run --entrypoint php -v $PWD/tests/base:/opt/www hyperf/hyperf:${{ matrix.php-version }}-zts-ubuntu-v${{ matrix.ubuntu-version }}-base /opt/www/openssl.php
       - name: Push
         if: ${{ github.event.inputs.event == 'publish' }}
         uses: docker/build-push-action@v5
