@@ -18,7 +18,7 @@ FROM ubuntu:${UBUNTU_VERSION}
 LABEL maintainer="Hyperf Developers <group@hyperf.io>" version="1.0" license="MIT"
 
 # 源码版本固定、可复现；升级只需改这里（php.net/distributions 可获取）
-ARG PHP_VERSION=8.4.26
+ARG PHP_VERSION=8.4.27
 ARG REDIS_VERSION=6.3.0
 
 # 避免 tzdata 等包安装时出现交互式询问
