@@ -22,10 +22,12 @@ jobs:
         os: [ ubuntu-latest ]
         spec: [ "" ]
         php-version: [ '8.2', '8.3' ]
-        alpine-version: [ '3.19', '3.20', '3.21', '3.22', '3.23', 'edge' ]
+        alpine-version: [ '3.19', '3.20', '3.21', '3.22', '3.23', '3.24', 'edge' ]
         exclude:
           - php-version: '8.2'
             alpine-version: '3.23'
+          - php-version: '8.2'
+            alpine-version: '3.24'
           - php-version: '8.2'
             alpine-version: 'edge'
       max-parallel: 8
