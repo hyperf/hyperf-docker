@@ -40,6 +40,14 @@ RUN set -ex \
     && rm -rf /var/cache/apk/* /tmp/* /usr/share/man \
     && echo -e "\033[42;37m Build Completed :).\033[0m\n"
 
+RUN set -ex \
+    && apk update \
+    && apk add --no-cache shadow \
+    && groupadd -r hyperf-user \
+    && useradd -r -g hyperf-user hyperf-user \
+    && apk del shadow \
+    && rm -rf /var/cache/apk/* /tmp/* /usr/share/man
+
 WORKDIR /opt/www
 
 # Composer Cache
@@ -48,6 +56,8 @@ WORKDIR /opt/www
 
 COPY . /opt/www
 RUN composer install --no-dev -o && php bin/hyperf.php
+
+USER hyperf-user
 
 EXPOSE 9501
 
